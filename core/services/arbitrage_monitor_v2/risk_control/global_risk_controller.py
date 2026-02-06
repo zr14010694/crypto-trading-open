@@ -14,6 +14,7 @@
 
 import asyncio
 import logging
+import json
 from typing import Dict, List, Optional, Set, Callable
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
@@ -275,9 +276,9 @@ class GlobalRiskController:
             try:
                 balances = await adapter.get_balances()
                 usdc_balance = self._get_usdc_balance(balances)
-                
+
                 if usdc_balance is None:
-                    logger.warning(f"[风险控制] {exchange_name}: 未找到USDC余额")
+                    self._log_balance_debug(exchange_name, adapter, balances)
                     continue
                 
                 # 检查余额不足平仓阈值
@@ -334,8 +335,8 @@ class GlobalRiskController:
             if not currency:
                 continue
             
-            # 🔥 兼容 USDC 及其变体（如 USDC.E），以及部分交易所使用的 USD 标识
-            if currency == 'USDC' or currency.startswith('USDC') or currency == 'USD':
+            # 🔥 兼容 USDC 及其变体（如 USDC.E），以及部分交易所使用的 USD/DUSD 标识
+            if currency == 'USDC' or currency.startswith('USDC') or currency == 'USD' or currency == 'DUSD':
                 total = balance.total
                 if total is not None:
                     return total
@@ -345,6 +346,53 @@ class GlobalRiskController:
                 used = balance.used or Decimal('0')
                 return free + used
         return None
+
+    @staticmethod
+    def _mask_wallet_address(address: Optional[str]) -> str:
+        if not address:
+            return ""
+        addr = str(address)
+        if len(addr) <= 10:
+            return addr
+        return f"{addr[:6]}...{addr[-4:]}"
+
+    @staticmethod
+    def _safe_preview(payload: object, limit: int = 2000) -> str:
+        try:
+            text = json.dumps(payload, ensure_ascii=True, default=str)
+        except Exception:
+            text = str(payload)
+        if len(text) > limit:
+            return f"{text[:limit]}...<truncated>"
+        return text
+
+    def _log_balance_debug(
+        self,
+        exchange_name: str,
+        adapter: ExchangeInterface,
+        balances: List[BalanceData],
+    ) -> None:
+        wallet_address = ""
+        try:
+            wallet_address = getattr(adapter.config, "wallet_address", "") or ""
+        except Exception:
+            wallet_address = ""
+        masked_wallet = self._mask_wallet_address(wallet_address) or "n/a"
+        snapshot: List[Dict[str, object]] = []
+        for balance in balances or []:
+            snapshot.append(
+                {
+                    "currency": getattr(balance, "currency", None),
+                    "free": str(getattr(balance, "free", None)),
+                    "used": str(getattr(balance, "used", None)),
+                    "total": str(getattr(balance, "total", None)),
+                    "raw": getattr(balance, "raw_data", None),
+                }
+            )
+        preview = self._safe_preview(snapshot)
+        logger.warning(
+            f"[风险控制] {exchange_name}: 未找到USDC余额 | wallet={masked_wallet} | balances={preview}"
+        )
     
     async def _handle_critical_balance(self, exchanges: Set[str]):
         """处理余额严重不足"""
@@ -576,4 +624,3 @@ class GlobalRiskController:
     def get_risk_status(self) -> RiskStatus:
         """获取风险状态"""
         return self.risk_status
-

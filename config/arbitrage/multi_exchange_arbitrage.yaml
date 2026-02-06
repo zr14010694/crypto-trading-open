@@ -16,18 +16,14 @@
 # symbols:
 #   - "BTC-USDC-PERP"
 
-enabled: false
+enabled: true
 mode: "one_to_many"
 allow_reverse: true
 min_spread_pct:
-center_exchange: "lighter"
+center_exchange: "hyperliquid"
 counter_exchanges:
-  - "edgex"
-#   - "backpack"
-  - "paradex"
+  - "standx"
 symbols:
   - "BTC-USDC-PERP"
   - "ETH-USDC-PERP"
   - "SOL-USDC-PERP"
-  - "HYPE-USDC-PERP"
-#  - "PAXG-USDC-PERP"

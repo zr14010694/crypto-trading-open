@@ -1,0 +1,46 @@
+# ====================================
+# StandX交易所配置文件
+# ====================================
+# 本配置文件用于配置StandX交易所的各项参数
+# 包括API连接、认证信息、市场配置、WebSocket设置等
+
+standx:
+  api:
+    base_url: https://perps.standx.com
+    timeout: 30
+    ws_url: wss://perps.standx.com/ws-stream/v1
+    order_ws_url: wss://perps.standx.com/ws-api/v1
+
+  # 认证配置 - 优先使用环境变量
+  # 环境变量：
+  #   STANDX_API_KEY
+  #   STANDX_JWT_TOKEN
+  #   STANDX_PRIVATE_KEY (Ed25519)
+  authentication:
+    api_key: ''
+    api_secret: ''
+    private_key: ''
+    jwt_token: ''
+    wallet_address: ''
+
+  extra_params:
+    chain: bsc
+    ssl_verify: true
+    ssl_ca_path: ""
+
+  subscription_mode:
+    mode: predefined
+    predefined:
+      symbols:
+        - BTC-USD
+        - ETH-USD
+        - SOL-USD
+      data_types:
+        ticker: true
+        orderbook: true
+        trades: false
+        user_data: false
+
+  enabled: true
+  name: StandX
+  testnet: false

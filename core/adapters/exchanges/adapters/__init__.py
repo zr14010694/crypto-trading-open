@@ -12,6 +12,7 @@
    - EdgeX: 永续合约交易所
    - Lighter: 永续合约交易所
    - Paradex: 永续合约交易所
+   - StandX: 永续合约交易所
 
    每个适配器都包含:
    - 完整的交易功能实现
@@ -28,6 +29,7 @@ from .edgex import EdgeXAdapter
 from .lighter import LighterAdapter
 from .paradex import ParadexAdapter
 from .variational import VariationalAdapter
+from .standx import StandXAdapter
 
 __all__ = [
     'HyperliquidAdapter',
@@ -38,4 +40,5 @@ __all__ = [
     'LighterAdapter',
     'ParadexAdapter',
     'VariationalAdapter',
+    'StandXAdapter',
 ]

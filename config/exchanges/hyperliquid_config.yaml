@@ -294,7 +294,7 @@ hyperliquid:
     #   2. 手动修改: 直接改变下面的值
     #   3. 重启监控程序使配置生效
     # 🔥 使用 ccxt 实现（需要 ccxt >= 4.4.x）✅ 当前使用
-    implementation: ccxt
+    implementation: native
     
     # 连接管理配置
     auto_reconnect: true          # 是否自动重连

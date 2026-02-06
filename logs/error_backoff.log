@@ -1,0 +1,16 @@
+2026-02-05 20:18:44.273 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 20:18:58.888 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 20:34:40.815 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 20:40:15.914 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 20:48:20.892 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 20:51:13.332 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 20:53:53.348 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 20:59:00.397 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 21:03:30.326 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 21:16:02.400 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 21:50:24.073 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 21:52:50.837 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 21:59:04.729 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 22:18:30.926 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 22:20:02.063 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成
+2026-02-05 22:24:17.341 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.error_backoff_controller] __init__:71 - ✅ [错误避让] 指数避让控制器初始化完成

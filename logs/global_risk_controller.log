@@ -1,0 +1,976 @@
+2026-02-05 20:18:44.279 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 20:18:44.291 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 20:18:51.751 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] stop:119 - 🛑 [风险控制] 全局风险控制器已停止
+2026-02-05 20:18:58.895 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 20:18:58.907 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 20:19:04.494 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] stop:119 - 🛑 [风险控制] 全局风险控制器已停止
+2026-02-05 20:34:40.821 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 20:34:40.831 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 20:35:40.751 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] stop:119 - 🛑 [风险控制] 全局风险控制器已停止
+2026-02-05 20:40:15.919 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 20:40:15.930 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 20:41:04.415 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] stop:119 - 🛑 [风险控制] 全局风险控制器已停止
+2026-02-05 20:48:20.899 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 20:48:20.910 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 20:49:23.912 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    balance = await asyncio.get_event_loop().run_in_executor(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, self.exchange.fetch_balance
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 20:49:24.137 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 20:50:27.137 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    balance = await asyncio.get_event_loop().run_in_executor(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, self.exchange.fetch_balance
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 20:50:27.491 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 20:51:13.339 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 20:51:13.351 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 20:51:30.492 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    balance = await asyncio.get_event_loop().run_in_executor(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, self.exchange.fetch_balance
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 20:51:30.864 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 20:52:16.353 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    balance = await asyncio.get_event_loop().run_in_executor(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, self.exchange.fetch_balance
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 20:52:17.620 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 20:52:33.867 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    balance = await asyncio.get_event_loop().run_in_executor(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, self.exchange.fetch_balance
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 20:52:34.250 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 20:53:20.622 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    balance = await asyncio.get_event_loop().run_in_executor(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, self.exchange.fetch_balance
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 20:53:21.005 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 20:53:37.252 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    balance = await asyncio.get_event_loop().run_in_executor(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, self.exchange.fetch_balance
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 20:53:37.374 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 20:53:53.353 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 20:53:53.366 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 20:54:20.794 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] stop:119 - 🛑 [风险控制] 全局风险控制器已停止
+2026-02-05 20:54:24.007 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    balance = await asyncio.get_event_loop().run_in_executor(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, self.exchange.fetch_balance
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 20:54:24.398 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 20:54:40.377 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    balance = await asyncio.get_event_loop().run_in_executor(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, self.exchange.fetch_balance
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 20:54:40.507 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 20:59:00.403 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 20:59:00.416 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 21:00:03.417 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    balance = await asyncio.get_event_loop().run_in_executor(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, self.exchange.fetch_balance
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:00:03.799 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:01:06.801 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    balance = await asyncio.get_event_loop().run_in_executor(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, self.exchange.fetch_balance
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:01:07.264 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:02:10.266 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    balance = await asyncio.get_event_loop().run_in_executor(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, self.exchange.fetch_balance
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:02:10.626 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:03:13.628 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    balance = await asyncio.get_event_loop().run_in_executor(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, self.exchange.fetch_balance
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:03:13.742 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:03:30.332 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 21:03:30.344 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 21:04:16.744 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    
+    
+    async def _fetch_swap_account_balance(self) -> Dict[str, Any]:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        """获取合约账户余额"""
+        ^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:04:16.846 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:04:30.537 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:04:30.892 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:05:19.848 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    
+    
+    async def _fetch_swap_account_balance(self) -> Dict[str, Any]:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        """获取合约账户余额"""
+        ^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:05:19.943 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:05:31.187 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:05:31.404 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:06:22.945 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    
+    
+    async def _fetch_swap_account_balance(self) -> Dict[str, Any]:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        """获取合约账户余额"""
+        ^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:06:23.066 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:06:32.250 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:06:32.654 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:07:26.068 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    
+    
+    async def _fetch_swap_account_balance(self) -> Dict[str, Any]:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        """获取合约账户余额"""
+        ^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:07:26.155 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:07:32.915 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:07:33.337 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:08:29.157 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    
+    
+    async def _fetch_swap_account_balance(self) -> Dict[str, Any]:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        """获取合约账户余额"""
+        ^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:08:29.242 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:08:33.607 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:08:34.033 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:09:32.244 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    
+    
+    async def _fetch_swap_account_balance(self) -> Dict[str, Any]:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        """获取合约账户余额"""
+        ^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:09:32.596 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:09:34.260 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:09:34.676 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:10:34.964 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:10:35.319 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:10:35.597 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    
+    
+    async def _fetch_swap_account_balance(self) -> Dict[str, Any]:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        """获取合约账户余额"""
+        ^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:10:35.973 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:11:35.516 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:11:35.847 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:11:38.974 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    
+    
+    async def _fetch_swap_account_balance(self) -> Dict[str, Any]:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        """获取合约账户余额"""
+        ^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:11:39.223 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:12:36.041 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:12:36.409 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:12:42.224 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    
+    
+    async def _fetch_swap_account_balance(self) -> Dict[str, Any]:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        """获取合约账户余额"""
+        ^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:12:42.613 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:13:36.730 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:13:37.080 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:13:45.615 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    
+    
+    async def _fetch_swap_account_balance(self) -> Dict[str, Any]:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        """获取合约账户余额"""
+        ^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:13:46.050 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:14:37.266 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:14:37.661 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:14:49.052 [ERROR   ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:306 - [风险控制] 检查hyperliquid余额失败: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+Traceback (most recent call last):
+  File "/Users/ruizhang/Documents/cryptotrading/core/services/arbitrage_monitor_v2/risk_control/global_risk_controller.py", line 276, in _check_all_balances
+    balances = await adapter.get_balances()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid.py", line 423, in get_balances
+    return await self._rest.get_swap_balances()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 274, in get_swap_balances
+    balance_data = await self._execute_with_retry(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 143, in _execute_with_retry
+    raise last_error
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 123, in _execute_with_retry
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ruizhang/Documents/cryptotrading/core/adapters/exchanges/adapters/hyperliquid_rest.py", line 555, in _fetch_swap_account_balance
+    
+    
+    async def _fetch_swap_account_balance(self) -> Dict[str, Any]:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        """获取合约账户余额"""
+        ^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 599, in fetch_balance
+    userAddress, params = self.handle_public_address('fetchBalance', params)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/ccxt/hyperliquid.py", line 2924, in handle_public_address
+    raise ArgumentsRequired(self.id + ' ' + methodName + '() requires a user parameter inside \'params\' or the wallet address set')
+ccxt.base.errors.ArgumentsRequired: hyperliquid fetchBalance() requires a user parameter inside 'params' or the wallet address set
+
+2026-02-05 21:14:49.489 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:16:02.406 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 21:16:02.418 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 21:17:02.731 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:17:02.931 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:18:00.661 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] stop:119 - 🛑 [风险控制] 全局风险控制器已停止
+2026-02-05 21:50:24.079 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 21:50:24.091 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 21:51:24.655 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:51:25.056 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:51:45.647 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] stop:119 - 🛑 [风险控制] 全局风险控制器已停止
+2026-02-05 21:52:50.843 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 21:52:50.853 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 21:53:51.010 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:53:51.355 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:54:51.609 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:54:51.853 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:55:52.212 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 21:55:52.838 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 21:56:49.979 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] stop:119 - 🛑 [风险控制] 全局风险控制器已停止
+2026-02-05 21:59:04.735 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 21:59:04.746 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 22:00:05.474 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:00:06.137 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:01:06.804 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:01:07.164 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:02:07.665 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:02:08.022 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:03:08.465 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:03:08.866 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:04:09.268 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:04:09.520 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:05:09.911 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:05:10.184 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:06:10.619 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:06:11.012 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:07:11.372 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:07:11.767 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:08:12.107 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:08:12.360 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:09:12.659 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:09:12.917 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:10:13.343 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:10:13.743 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:11:14.140 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:11:14.707 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:11:41.452 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] stop:119 - 🛑 [风险控制] 全局风险控制器已停止
+2026-02-05 22:18:30.932 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 22:18:30.944 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 22:19:13.738 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] stop:119 - 🛑 [风险控制] 全局风险控制器已停止
+2026-02-05 22:20:02.069 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 22:20:02.079 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 22:21:02.550 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:21:02.816 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:22:03.019 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:22:03.411 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:23:03.686 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:23:04.074 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:23:36.906 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] stop:119 - 🛑 [风险控制] 全局风险控制器已停止
+2026-02-05 22:24:17.347 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:80 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-05 22:24:17.358 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:105 - ✅ [风险控制] 全局风险控制器已启动
+2026-02-05 22:25:17.566 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:25:17.791 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:26:18.014 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:26:18.441 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:27:18.560 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] hyperliquid: 未找到USDC余额
+2026-02-05 22:27:18.945 [WARNING ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] _check_all_balances:280 - [风险控制] standx: 未找到USDC余额
+2026-02-05 22:27:23.271 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] stop:119 - 🛑 [风险控制] 全局风险控制器已停止

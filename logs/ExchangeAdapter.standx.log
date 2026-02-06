@@ -1,0 +1,158 @@
+2026-02-05 20:12:01,957 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 20:12:01,958 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 20:14:01,161 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 20:18:44,271 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 20:18:44,304 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 20:18:44,711 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 20:18:44,711 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 20:18:51,753 - ExchangeAdapter.standx - INFO - disconnect:155 - 正在断开交易所连接...
+2026-02-05 20:18:52,040 - ExchangeAdapter.standx - INFO - disconnect:175 - 交易所连接已断开
+2026-02-05 20:18:52,040 - ExchangeAdapter.standx - INFO - disconnect:178 - 交易所适配器已停止: standx
+2026-02-05 20:18:58,888 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 20:18:58,920 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 20:19:00,412 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 20:19:00,412 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 20:19:04,496 - ExchangeAdapter.standx - INFO - disconnect:155 - 正在断开交易所连接...
+2026-02-05 20:19:04,898 - ExchangeAdapter.standx - INFO - disconnect:175 - 交易所连接已断开
+2026-02-05 20:19:04,898 - ExchangeAdapter.standx - INFO - disconnect:178 - 交易所适配器已停止: standx
+2026-02-05 20:32:54,343 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 20:32:54,344 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 20:34:40,815 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 20:34:40,842 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 20:34:41,985 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 20:34:41,985 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 20:35:11,985 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:35:40,753 - ExchangeAdapter.standx - INFO - disconnect:155 - 正在断开交易所连接...
+2026-02-05 20:40:15,913 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 20:40:15,941 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 20:40:16,794 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 20:40:16,795 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 20:40:46,796 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:41:04,417 - ExchangeAdapter.standx - INFO - disconnect:155 - 正在断开交易所连接...
+2026-02-05 20:41:04,614 - ExchangeAdapter.standx - INFO - disconnect:175 - 交易所连接已断开
+2026-02-05 20:41:04,614 - ExchangeAdapter.standx - INFO - disconnect:178 - 交易所适配器已停止: standx
+2026-02-05 20:48:20,891 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 20:48:20,922 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 20:48:21,774 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 20:48:21,775 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 20:48:51,775 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:49:21,776 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:49:51,777 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:50:21,775 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:50:51,774 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:51:13,331 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 20:51:13,363 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 20:51:14,319 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 20:51:14,319 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 20:51:21,774 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:51:44,320 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:51:51,775 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:52:14,320 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:52:21,775 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:52:44,321 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:52:51,776 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:53:14,321 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:53:21,776 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:53:44,321 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:53:51,777 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:53:53,347 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 20:53:53,379 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 20:53:54,211 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 20:53:54,211 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 20:54:14,322 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:54:20,799 - ExchangeAdapter.standx - INFO - disconnect:155 - 正在断开交易所连接...
+2026-02-05 20:54:20,955 - ExchangeAdapter.standx - INFO - disconnect:175 - 交易所连接已断开
+2026-02-05 20:54:20,956 - ExchangeAdapter.standx - INFO - disconnect:178 - 交易所适配器已停止: standx
+2026-02-05 20:54:21,777 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:54:44,323 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:54:51,778 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:55:14,324 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 20:59:00,396 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 20:59:00,428 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 20:59:01,309 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 20:59:01,309 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 20:59:31,309 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:00:01,310 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:00:31,310 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:01:01,311 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:01:31,311 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:02:01,311 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:02:31,312 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:03:01,312 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:03:30,325 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 21:03:30,357 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 21:03:31,271 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 21:03:31,271 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 21:03:31,313 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:04:01,313 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:04:31,314 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:05:01,314 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:05:31,314 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:06:01,315 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:06:31,315 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:07:01,316 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:07:31,316 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:08:01,317 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:08:31,317 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:09:01,318 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:09:31,318 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:10:01,319 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:10:31,319 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:11:01,320 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:11:31,320 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:12:01,321 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:12:31,321 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:13:01,322 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:13:31,322 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:14:01,322 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:14:31,323 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:15:01,323 - ExchangeAdapter.standx - ERROR - _heartbeat_loop:430 - 心跳检测异常: 子类必须实现 _do_heartbeat 方法
+2026-02-05 21:16:02,399 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 21:16:02,431 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 21:16:03,180 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 21:16:03,180 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 21:18:00,812 - ExchangeAdapter.standx - INFO - disconnect:155 - 正在断开交易所连接...
+2026-02-05 21:18:02,950 - ExchangeAdapter.standx - INFO - disconnect:175 - 交易所连接已断开
+2026-02-05 21:18:02,950 - ExchangeAdapter.standx - INFO - disconnect:178 - 交易所适配器已停止: standx
+2026-02-05 21:50:24,072 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 21:50:24,103 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 21:50:25,005 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 21:50:25,005 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 21:51:46,127 - ExchangeAdapter.standx - INFO - disconnect:155 - 正在断开交易所连接...
+2026-02-05 21:51:47,850 - ExchangeAdapter.standx - INFO - disconnect:175 - 交易所连接已断开
+2026-02-05 21:51:47,850 - ExchangeAdapter.standx - INFO - disconnect:178 - 交易所适配器已停止: standx
+2026-02-05 21:52:50,836 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 21:52:50,864 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 21:52:52,368 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 21:52:52,369 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 21:56:50,093 - ExchangeAdapter.standx - INFO - disconnect:155 - 正在断开交易所连接...
+2026-02-05 21:56:55,340 - ExchangeAdapter.standx - INFO - disconnect:175 - 交易所连接已断开
+2026-02-05 21:56:55,340 - ExchangeAdapter.standx - INFO - disconnect:178 - 交易所适配器已停止: standx
+2026-02-05 21:59:04,729 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 21:59:04,756 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 21:59:05,489 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 21:59:05,490 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 22:11:41,764 - ExchangeAdapter.standx - INFO - disconnect:155 - 正在断开交易所连接...
+2026-02-05 22:11:46,481 - ExchangeAdapter.standx - INFO - disconnect:175 - 交易所连接已断开
+2026-02-05 22:11:46,481 - ExchangeAdapter.standx - INFO - disconnect:178 - 交易所适配器已停止: standx
+2026-02-05 22:18:30,925 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 22:18:30,956 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 22:18:31,764 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 22:18:31,765 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 22:19:14,022 - ExchangeAdapter.standx - INFO - disconnect:155 - 正在断开交易所连接...
+2026-02-05 22:19:14,144 - ExchangeAdapter.standx - INFO - disconnect:175 - 交易所连接已断开
+2026-02-05 22:19:14,145 - ExchangeAdapter.standx - INFO - disconnect:178 - 交易所适配器已停止: standx
+2026-02-05 22:20:02,063 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 22:20:02,089 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 22:20:02,999 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 22:20:02,999 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 22:23:37,165 - ExchangeAdapter.standx - INFO - disconnect:155 - 正在断开交易所连接...
+2026-02-05 22:23:41,329 - ExchangeAdapter.standx - INFO - disconnect:175 - 交易所连接已断开
+2026-02-05 22:23:41,329 - ExchangeAdapter.standx - INFO - disconnect:178 - 交易所适配器已停止: standx
+2026-02-05 22:24:17,340 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-05 22:24:17,370 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-05 22:24:18,489 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-05 22:24:18,490 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-05 22:27:23,640 - ExchangeAdapter.standx - INFO - disconnect:155 - 正在断开交易所连接...
+2026-02-05 22:27:29,956 - ExchangeAdapter.standx - INFO - disconnect:175 - 交易所连接已断开
+2026-02-05 22:27:29,956 - ExchangeAdapter.standx - INFO - disconnect:178 - 交易所适配器已停止: standx

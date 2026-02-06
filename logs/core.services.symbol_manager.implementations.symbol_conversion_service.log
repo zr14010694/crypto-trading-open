@@ -1,0 +1,47 @@
+2026-02-05 19:41:56,627 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 5 个交易所格式
+2026-02-05 19:41:56,627 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 5 个交易所
+2026-02-05 19:41:56,627 - core.services.symbol_manager.implementations.symbol_conversion_service - WARNING - warning:109 - 未找到交易所格式配置: standx
+2026-02-05 19:41:56,660 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 5 个交易所格式
+2026-02-05 19:41:56,660 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 5 个交易所
+2026-02-05 19:41:56,661 - core.services.symbol_manager.implementations.symbol_conversion_service - WARNING - warning:109 - 未找到交易所格式配置: standx
+2026-02-05 19:41:56,667 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 5 个交易所格式
+2026-02-05 19:41:56,668 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 5 个交易所
+2026-02-05 19:41:56,668 - core.services.symbol_manager.implementations.symbol_conversion_service - WARNING - warning:109 - 未找到交易所格式配置: standx
+2026-02-05 19:43:34,616 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 19:43:34,616 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 19:43:34,622 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 19:43:34,622 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 19:43:34,627 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 19:43:34,627 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 20:18:44,269 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 20:18:44,269 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 20:18:58,885 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 20:18:58,886 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 20:34:40,813 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 20:34:40,813 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 20:40:15,912 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 20:40:15,912 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 20:48:20,889 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 20:48:20,889 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 20:51:13,329 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 20:51:13,329 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 20:53:53,345 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 20:53:53,345 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 20:59:00,394 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 20:59:00,394 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 21:03:30,323 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 21:03:30,323 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 21:16:02,397 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 21:16:02,397 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 21:50:24,070 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 21:50:24,070 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 21:52:50,835 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 21:52:50,835 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 21:59:04,727 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 21:59:04,727 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 22:18:30,923 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 22:18:30,923 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 22:20:02,061 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 22:20:02,061 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所
+2026-02-05 22:24:17,338 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - 📋 加载配置完成: 6 个交易所格式
+2026-02-05 22:24:17,338 - core.services.symbol_manager.implementations.symbol_conversion_service - INFO - info:102 - ✅ 符号转换服务初始化完成，支持 6 个交易所

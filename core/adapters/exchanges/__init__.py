@@ -48,6 +48,7 @@ from .adapters.backpack import BackpackAdapter
 from .adapters.binance import BinanceAdapter
 from .adapters.paradex import ParadexAdapter
 from .adapters.variational import VariationalAdapter
+from .adapters.standx import StandXAdapter
 
 __all__ = [
     # 核心接口和基类
@@ -82,6 +83,7 @@ __all__ = [
     'BinanceAdapter',
     'ParadexAdapter',
     'VariationalAdapter',
+    'StandXAdapter',
 ]
 
 # 版本信息

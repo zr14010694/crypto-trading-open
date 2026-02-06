@@ -1049,11 +1049,22 @@ class HyperliquidAdapter(ExchangeAdapter):
         """包装ticker回调函数"""
         async def wrapped_callback(symbol: str, ticker_data: TickerData):
             try:
+                # 🔧 修复：检查原始回调函数的参数数量
+                import inspect
+                sig = inspect.signature(original_callback)
+                param_count = len(sig.parameters)
+
                 # 调用原始回调
                 if asyncio.iscoroutinefunction(original_callback):
-                    await original_callback(ticker_data)
+                    if param_count == 2:
+                        await original_callback(symbol, ticker_data)
+                    else:
+                        await original_callback(ticker_data)
                 else:
-                    original_callback(ticker_data)
+                    if param_count == 2:
+                        original_callback(symbol, ticker_data)
+                    else:
+                        original_callback(ticker_data)
 
                 # 触发事件
                 await self._handle_ticker_update(ticker_data)

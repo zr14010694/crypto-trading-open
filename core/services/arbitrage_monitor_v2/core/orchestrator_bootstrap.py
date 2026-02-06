@@ -102,6 +102,7 @@ class OrchestratorBootstrap:
             "backpack": ExchangeType.SPOT,
             "paradex": ExchangeType.PERPETUAL,
             "grvt": ExchangeType.PERPETUAL,
+            "standx": ExchangeType.PERPETUAL,
         }
 
         try:
@@ -259,4 +260,3 @@ class OrchestratorBootstrap:
                 logger.info(f"✅ [统一调度] 已断开: {exchange_name}")
             except Exception as exc:
                 logger.error(f"❌ [统一调度] 断开{exchange_name}失败: {exc}")
-

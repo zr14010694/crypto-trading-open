@@ -1,0 +1,457 @@
+2026-02-05 20:18:44.273 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 20:18:44.273 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 20:18:44.273 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - LIGHTER_ETH_SPOT_PERP | base_quantity=0.8 | max_segments=10
+      T1: 开仓≥0.0100%, 平仓<0.0040%
+      T2: 开仓≥0.0200%, 平仓<0.0100%
+      T3: 开仓≥0.0300%, 平仓<0.0200%
+      T4: 开仓≥0.0400%, 平仓<0.0300%
+      T5: 开仓≥0.0500%, 平仓<0.0400%
+      T6: 开仓≥0.0600%, 平仓<0.0500%
+      T7: 开仓≥0.0700%, 平仓<0.0600%
+      T8: 开仓≥0.0800%, 平仓<0.0700%
+      T9: 开仓≥0.0900%, 平仓<0.0800%
+      T10: 开仓≥0.1000%, 平仓<0.0900%
+2026-02-05 20:18:44.273 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:18:44.273 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:18:44.273 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - SOL-USDC-PERP | base_quantity=2 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 20:18:44.273 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 20:18:58.889 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 20:18:58.889 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 20:18:58.889 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - LIGHTER_ETH_SPOT_PERP | base_quantity=0.8 | max_segments=10
+      T1: 开仓≥0.0100%, 平仓<0.0040%
+      T2: 开仓≥0.0200%, 平仓<0.0100%
+      T3: 开仓≥0.0300%, 平仓<0.0200%
+      T4: 开仓≥0.0400%, 平仓<0.0300%
+      T5: 开仓≥0.0500%, 平仓<0.0400%
+      T6: 开仓≥0.0600%, 平仓<0.0500%
+      T7: 开仓≥0.0700%, 平仓<0.0600%
+      T8: 开仓≥0.0800%, 平仓<0.0700%
+      T9: 开仓≥0.0900%, 平仓<0.0800%
+      T10: 开仓≥0.1000%, 平仓<0.0900%
+2026-02-05 20:18:58.889 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:18:58.889 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:18:58.889 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - SOL-USDC-PERP | base_quantity=2 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 20:18:58.889 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 20:34:40.815 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 20:34:40.815 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 20:34:40.815 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - LIGHTER_ETH_SPOT_PERP | base_quantity=0.8 | max_segments=10
+      T1: 开仓≥0.0100%, 平仓<0.0040%
+      T2: 开仓≥0.0200%, 平仓<0.0100%
+      T3: 开仓≥0.0300%, 平仓<0.0200%
+      T4: 开仓≥0.0400%, 平仓<0.0300%
+      T5: 开仓≥0.0500%, 平仓<0.0400%
+      T6: 开仓≥0.0600%, 平仓<0.0500%
+      T7: 开仓≥0.0700%, 平仓<0.0600%
+      T8: 开仓≥0.0800%, 平仓<0.0700%
+      T9: 开仓≥0.0900%, 平仓<0.0800%
+      T10: 开仓≥0.1000%, 平仓<0.0900%
+2026-02-05 20:34:40.815 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:34:40.815 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:34:40.815 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - SOL-USDC-PERP | base_quantity=2 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 20:34:40.815 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 20:40:15.914 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 20:40:15.914 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 20:40:15.914 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:40:15.914 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:40:15.914 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 20:48:20.892 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 20:48:20.893 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 20:48:20.893 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:48:20.893 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:48:20.893 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 20:51:13.332 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 20:51:13.333 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 20:51:13.333 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:51:13.333 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:51:13.333 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 20:53:53.348 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 20:53:53.348 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 20:53:53.348 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:53:53.348 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:53:53.348 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 20:59:00.397 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 20:59:00.397 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 20:59:00.397 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:59:00.397 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 20:59:00.397 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 20:59:07.788 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_BTC] 当前格子3105249超过最大5，仅补齐最大格子目标持仓=0.020，当前有效持仓=0
+2026-02-05 20:59:07.788 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_BTC] 开仓信号: 格子T3105249 | 目标=0.020 实际=0 待补=0 | 新增=0.020 本次=0.00200
+2026-02-05 20:59:07.788 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_ETH] 当前格子88234超过最大5，仅补齐最大格子目标持仓=1.0，当前有效持仓=0
+2026-02-05 20:59:07.788 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_ETH] 开仓信号: 格子T88234 | 目标=1.0 实际=0 待补=0 | 新增=1.0 本次=0.10
+2026-02-05 20:59:07.889 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [HYPERLIQUID_STANDX_BTC] 开仓监测
+   当前价差: +0.0057%
+   开仓阈值: ≥0.0250% (T1)
+   状态: ⏳ 等待价差扩大
+   开仓视角: 买hyperliquid/BTC-USDC-PERP@69581.00 → 卖standx/BTC-USDC-PERP@69585.00
+2026-02-05 20:59:08.893 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [HYPERLIQUID_STANDX_ETH] 开仓监测
+   当前价差: +0.0242%
+   开仓阈值: ≥0.0250% (T1)
+   状态: ⏳ 等待价差扩大
+   开仓视角: 买hyperliquid/ETH-USDC-PERP@2063.70 → 卖standx/ETH-USDC-PERP@2064.20
+2026-02-05 21:03:30.326 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 21:03:30.326 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 21:03:30.326 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 21:03:30.326 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 21:03:30.326 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 21:03:34.295 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_ETH] 当前格子130812超过最大5，仅补齐最大格子目标持仓=1.0，当前有效持仓=0
+2026-02-05 21:03:34.295 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_ETH] 开仓信号: 格子T130812 | 目标=1.0 实际=0 待补=0 | 新增=1.0 本次=0.10
+2026-02-05 21:03:34.395 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_BTC] 当前格子130885超过最大5，仅补齐最大格子目标持仓=0.020，当前有效持仓=0
+2026-02-05 21:03:34.395 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_BTC] 开仓信号: 格子T130885 | 目标=0.020 实际=0 待补=0 | 新增=0.020 本次=0.00200
+2026-02-05 21:03:34.396 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [HYPERLIQUID_STANDX_ETH] 开仓监测
+   当前价差: +0.0242%
+   开仓阈值: ≥0.0250% (T1)
+   状态: ⏳ 等待价差扩大
+   开仓视角: 买hyperliquid/ETH-USDC-PERP@2062.40 → 卖standx/ETH-USDC-PERP@2062.90
+2026-02-05 21:16:02.400 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 21:16:02.400 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 21:16:02.400 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 21:16:02.400 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 21:16:02.400 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 21:16:05.662 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_BTC] 当前格子130902超过最大5，仅补齐最大格子目标持仓=0.020，当前有效持仓=0
+2026-02-05 21:16:05.662 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_BTC] 开仓信号: 格子T130902 | 目标=0.020 实际=0 待补=0 | 新增=0.020 本次=0.00200
+2026-02-05 21:16:05.863 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [HYPERLIQUID_STANDX_BTC] 开仓监测
+   当前价差: +0.0144%
+   开仓阈值: ≥0.0250% (T1)
+   状态: ⏳ 等待价差扩大
+   开仓视角: 买standx/BTC-USDC-PERP@69459.00 → 卖hyperliquid/BTC-USDC-PERP@69469.00
+2026-02-05 21:16:05.863 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_ETH] 当前格子130858超过最大5，仅补齐最大格子目标持仓=1.0，当前有效持仓=0
+2026-02-05 21:16:05.863 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_ETH] 开仓信号: 格子T130858 | 目标=1.0 实际=0 待补=0 | 新增=1.0 本次=0.10
+2026-02-05 21:50:24.073 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 21:50:24.073 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 21:50:24.073 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 21:50:24.073 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 21:50:24.073 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 21:50:27.613 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_BTC] 当前格子131148超过最大5，仅补齐最大格子目标持仓=0.020，当前有效持仓=0
+2026-02-05 21:50:27.613 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_BTC] 开仓信号: 格子T131148 | 目标=0.020 实际=0 待补=0 | 新增=0.020 本次=0.00200
+2026-02-05 21:50:27.613 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [HYPERLIQUID_STANDX_ETH] 开仓监测
+   当前价差: +0.0243%
+   开仓阈值: ≥0.0250% (T1)
+   状态: ⏳ 等待价差扩大
+   开仓视角: 买hyperliquid/ETH-USDC-PERP@2055.40 → 卖standx/ETH-USDC-PERP@2055.90
+2026-02-05 21:50:27.713 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_ETH] 当前格子89074超过最大5，仅补齐最大格子目标持仓=1.0，当前有效持仓=0
+2026-02-05 21:50:27.713 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_ETH] 开仓信号: 格子T89074 | 目标=1.0 实际=0 待补=0 | 新增=1.0 本次=0.10
+2026-02-05 21:52:50.837 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 21:52:50.837 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 21:52:50.837 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 21:52:50.837 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 21:52:50.837 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 21:52:53.944 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_BTC] 当前格子3138805超过最大5，仅补齐最大格子目标持仓=0.020，当前有效持仓=0
+2026-02-05 21:52:53.944 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_BTC] 开仓信号: 格子T3138805 | 目标=0.020 实际=0 待补=0 | 新增=0.020 本次=0.00200
+2026-02-05 21:52:53.945 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_ETH] 当前格子89021超过最大5，仅补齐最大格子目标持仓=1.0，当前有效持仓=0
+2026-02-05 21:52:53.945 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_ETH] 开仓信号: 格子T89021 | 目标=1.0 实际=0 待补=0 | 新增=1.0 本次=0.10
+2026-02-05 21:52:55.861 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [HYPERLIQUID_STANDX_ETH] 开仓监测
+   当前价差: +0.0097%
+   开仓阈值: ≥0.0250% (T1)
+   状态: ⏳ 等待价差扩大
+   开仓视角: 买hyperliquid/ETH-USDC-PERP@2061.10 → 卖standx/ETH-USDC-PERP@2061.30
+2026-02-05 21:59:04.729 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 21:59:04.729 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 21:59:04.729 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 21:59:04.730 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 21:59:04.730 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 21:59:09.764 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [HYPERLIQUID_STANDX_BTC] 开仓监测
+   当前价差: +0.0115%
+   开仓阈值: ≥0.0250% (T1)
+   状态: ⏳ 等待价差扩大
+   开仓视角: 买hyperliquid/BTC-USDC-PERP@69663.00 → 卖standx/BTC-USDC-PERP@69671.00
+2026-02-05 21:59:09.764 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_ETH] 当前格子131404超过最大5，仅补齐最大格子目标持仓=1.0，当前有效持仓=0
+2026-02-05 21:59:09.764 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_ETH] 开仓信号: 格子T131404 | 目标=1.0 实际=0 待补=0 | 新增=1.0 本次=0.10
+2026-02-05 21:59:09.966 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_BTC] 当前格子131454超过最大5，仅补齐最大格子目标持仓=0.020，当前有效持仓=0
+2026-02-05 21:59:09.967 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_BTC] 开仓信号: 格子T131454 | 目标=0.020 实际=0 待补=0 | 新增=0.020 本次=0.00200
+2026-02-05 21:59:09.967 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [HYPERLIQUID_STANDX_ETH] 开仓监测
+   当前价差: +0.0194%
+   开仓阈值: ≥0.0250% (T1)
+   状态: ⏳ 等待价差扩大
+   开仓视角: 买hyperliquid/ETH-USDC-PERP@2057.40 → 卖standx/ETH-USDC-PERP@2057.80
+2026-02-05 22:18:30.926 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 22:18:30.927 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 22:18:30.927 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 22:18:30.927 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 22:18:30.927 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 22:18:34.515 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_BTC] 开仓信号: 格子T1 | 目标=0.004 实际=0 待补=0 | 新增=0.004 本次=0.00200
+2026-02-05 22:18:34.515 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_ETH] 当前格子131223超过最大5，仅补齐最大格子目标持仓=1.0，当前有效持仓=0
+2026-02-05 22:18:34.516 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_ETH] 开仓信号: 格子T131223 | 目标=1.0 实际=0 待补=0 | 新增=1.0 本次=0.10
+2026-02-05 22:18:34.718 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_BTC] 当前格子3117510超过最大5，仅补齐最大格子目标持仓=0.020，当前有效持仓=0
+2026-02-05 22:18:35.526 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [HYPERLIQUID_STANDX_ETH] 开仓监测
+   当前价差: +0.0097%
+   开仓阈值: ≥0.0250% (T1)
+   状态: ⏳ 等待价差扩大
+   开仓视角: 买hyperliquid/ETH-USDC-PERP@2057.50 → 卖standx/ETH-USDC-PERP@2057.70
+2026-02-05 22:20:02.063 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 22:20:02.063 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 22:20:02.063 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 22:20:02.064 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 22:20:02.064 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 22:20:06.855 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_ETH] 当前格子131196超过最大5，仅补齐最大格子目标持仓=1.0，当前有效持仓=0
+2026-02-05 22:20:06.855 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_ETH] 开仓信号: 格子T131196 | 目标=1.0 实际=0 待补=0 | 新增=1.0 本次=0.10
+2026-02-05 22:20:07.258 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_BTC] 当前格子131201超过最大5，仅补齐最大格子目标持仓=0.020，当前有效持仓=0
+2026-02-05 22:20:07.258 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_BTC] 开仓信号: 格子T131201 | 目标=0.020 实际=0 待补=0 | 新增=0.020 本次=0.00200
+2026-02-05 22:24:17.341 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-05 22:24:17.341 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-05 22:24:17.341 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.004 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 22:24:17.341 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.2 | max_segments=5
+      T1: 开仓≥0.0250%, 平仓<0.0100%
+      T2: 开仓≥0.0500%, 平仓<0.0250%
+      T3: 开仓≥0.0750%, 平仓<0.0500%
+      T4: 开仓≥0.1000%, 平仓<0.0750%
+      T5: 开仓≥0.1250%, 平仓<0.1000%
+2026-02-05 22:24:17.341 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+      T1: 开仓≥0.0300%, 平仓<0.0120%
+      T2: 开仓≥0.0600%, 平仓<0.0300%
+      T3: 开仓≥0.0900%, 平仓<0.0600%
+      T4: 开仓≥0.1200%, 平仓<0.0900%
+      T5: 开仓≥0.1500%, 平仓<0.1200%
+2026-02-05 22:24:20.626 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_BTC] 当前格子3119433超过最大5，仅补齐最大格子目标持仓=0.020，当前有效持仓=0
+2026-02-05 22:24:20.626 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_BTC] 开仓信号: 格子T3119433 | 目标=0.020 实际=0 待补=0 | 新增=0.020 本次=0.00200
+2026-02-05 22:24:20.627 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [HYPERLIQUID_STANDX_ETH] 当前格子88335超过最大5，仅补齐最大格子目标持仓=1.0，当前有效持仓=0
+2026-02-05 22:24:20.627 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [HYPERLIQUID_STANDX_ETH] 开仓信号: 格子T88335 | 目标=1.0 实际=0 待补=0 | 新增=1.0 本次=0.10
+2026-02-05 22:24:21.232 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [HYPERLIQUID_STANDX_ETH] 开仓监测
+   当前价差: +0.0048%
+   开仓阈值: ≥0.0250% (T1)
+   状态: ⏳ 等待价差扩大
+   开仓视角: 买hyperliquid/ETH-USDC-PERP@2068.10 → 卖standx/ETH-USDC-PERP@2068.20

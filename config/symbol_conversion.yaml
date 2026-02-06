@@ -60,6 +60,19 @@ exchange_formats:
       PERP: ""      # Lighter永续合约不使用类型后缀
       SPOT: ""
       PERPETUAL: ""
+
+  standx:
+    format_type: "standx"
+    pattern: "{base}-{quote}"  # 例如：BTC-USD
+    separator: "-"
+    supported_types: [""]  # StandX永续合约不使用类型后缀
+    default_quote: "USD"
+    quote_mapping:
+      USDC: "USD"  # 将USDC映射为USD
+      DUSD: "USD"  # 将DUSD映射为USD
+    type_mapping:
+      PERP: ""
+      PERPETUAL: ""
     
   binance:
     format_type: "binance"
@@ -121,6 +134,11 @@ symbol_mappings:
       "ETH-USDC-SPOT": "ETH/USDC"
       "BTC-USDC-SPOT": "BTC/USDC"
       "SOL-USDC-SPOT": "SOL/USDC"
+
+    standx:
+      "BTC-USDC-PERP": "BTC-USD"
+      "ETH-USDC-PERP": "ETH-USD"
+      "SOL-USDC-PERP": "SOL-USD"
   
   # 交易所格式到标准格式的反向映射
   exchange_to_standard:
@@ -161,6 +179,11 @@ symbol_mappings:
       "ETH/USDC": "ETH-USDC-SPOT"
       "BTC/USDC": "BTC-USDC-SPOT"
       "SOL/USDC": "SOL-USDC-SPOT"
+
+    standx:
+      "BTC-USD": "BTC-USDC-PERP"
+      "ETH-USD": "ETH-USDC-PERP"
+      "SOL-USD": "SOL-USDC-PERP"
     
     edgex:
       # EdgeX API 返回的符号（无_PERP后缀）

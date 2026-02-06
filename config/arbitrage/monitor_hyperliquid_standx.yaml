@@ -1,0 +1,55 @@
+# ============================================================================
+# Hyperliquid + StandX 监控配置（分段套利v2）
+# ============================================================================
+# 启动:
+# python main_unified.py --config config/arbitrage/arbitrage_segmented.yaml \
+#   --monitor-config config/arbitrage/monitor_hyperliquid_standx.yaml
+# ============================================================================
+
+# 交易所配置（Hyperliquid ↔ StandX）
+exchanges:
+  - hyperliquid
+  - standx
+
+# 监控交易对
+symbols:
+  - BTC-USDC-PERP
+  - ETH-USDC-PERP
+  - SOL-USDC-PERP
+
+# 套利阈值配置
+thresholds:
+  min_spread_pct: 0.1
+  min_funding_rate_diff: 0.01
+
+# WebSocket配置
+websocket:
+  ping_interval: 30
+  reconnect_delay: 5
+  max_reconnect_attempts: 50000
+
+# 性能配置
+performance:
+  analysis_interval_ms: 10
+  ui_refresh_interval_ms: 1000
+
+# 健康检查配置
+health_check:
+  interval: 10
+  data_timeout: 30
+
+# 历史记录配置（默认关闭）
+spread_history:
+  enabled: false
+  data_dir: "data/spread_history"
+  sampling:
+    interval_seconds: 60
+    strategy: "max"
+  write:
+    batch_size: 10
+    batch_timeout: 60.0
+    queue_maxsize: 500
+  storage:
+    compress_after_days: 10
+    archive_after_days: 30
+    cleanup_interval_hours: 24

@@ -6,6 +6,7 @@ Hyperliquid REST API模块
 
 import asyncio
 import ccxt
+import json
 from datetime import datetime
 from typing import Dict, List, Optional, Any
 from decimal import Decimal
@@ -263,11 +264,14 @@ class HyperliquidRest(HyperliquidBase):
             operation_name="get_balances"
         )
 
-        return [
+        balances = [
             self._parse_balance(currency, balance_info)
             for currency, balance_info in balance_data.items()
             if balance_info.get('total', 0) > 0
         ]
+        if not balances:
+            self._log_balance_debug("spot_balance_empty", balance_data)
+        return balances
 
     async def get_swap_balances(self) -> List[BalanceData]:
         """获取合约账户余额"""
@@ -303,7 +307,42 @@ class HyperliquidRest(HyperliquidBase):
                     }
                     result.append(self._parse_balance(currency, balance_dict))
 
+        if not result:
+            self._log_balance_debug("swap_balance_empty", balance_data)
         return result
+
+    @staticmethod
+    def _mask_wallet_address(address: Optional[str]) -> str:
+        if not address:
+            return ""
+        addr = str(address)
+        if len(addr) <= 10:
+            return addr
+        return f"{addr[:6]}...{addr[-4:]}"
+
+    @staticmethod
+    def _safe_preview(payload: object, limit: int = 2000) -> str:
+        try:
+            text = json.dumps(payload, ensure_ascii=True, default=str)
+        except Exception:
+            text = str(payload)
+        if len(text) > limit:
+            return f"{text[:limit]}...<truncated>"
+        return text
+
+    def _log_balance_debug(self, context: str, payload: Any) -> None:
+        if not self.logger:
+            return
+        wallet_address = ""
+        try:
+            wallet_address = getattr(self.config, "wallet_address", "") or ""
+        except Exception:
+            wallet_address = ""
+        masked_wallet = self._mask_wallet_address(wallet_address) or "n/a"
+        preview = self._safe_preview(payload)
+        self.logger.warning(
+            f"[BalanceDebug] {context} wallet={masked_wallet} payload={preview}"
+        )
 
     async def get_positions(self, symbols: Optional[List[str]] = None) -> List[PositionData]:
         """获取持仓信息"""
@@ -541,6 +580,14 @@ class HyperliquidRest(HyperliquidBase):
 
     async def _fetch_account_balance(self) -> Dict[str, Any]:
         """获取现货账户余额"""
+        params = {}
+        if self.config and self.config.wallet_address:
+            params["user"] = self.config.wallet_address
+
+        if params:
+            return await asyncio.get_event_loop().run_in_executor(
+                None, self.exchange.fetch_balance, params
+            )
         return await asyncio.get_event_loop().run_in_executor(
             None, self.exchange.fetch_balance
         )
@@ -552,9 +599,18 @@ class HyperliquidRest(HyperliquidBase):
         self.exchange.options['defaultType'] = 'swap'
 
         try:
-            balance = await asyncio.get_event_loop().run_in_executor(
-                None, self.exchange.fetch_balance
-            )
+            params = {}
+            if self.config and self.config.wallet_address:
+                params["user"] = self.config.wallet_address
+
+            if params:
+                balance = await asyncio.get_event_loop().run_in_executor(
+                    None, self.exchange.fetch_balance, params
+                )
+            else:
+                balance = await asyncio.get_event_loop().run_in_executor(
+                    None, self.exchange.fetch_balance
+                )
             return balance
         finally:
             # 恢复原来的类型
@@ -562,6 +618,14 @@ class HyperliquidRest(HyperliquidBase):
 
     async def _fetch_positions(self) -> List[Dict[str, Any]]:
         """获取持仓信息"""
+        params = {}
+        if self.config and self.config.wallet_address:
+            params["user"] = self.config.wallet_address
+
+        if params:
+            return await asyncio.get_event_loop().run_in_executor(
+                None, self.exchange.fetch_positions, None, params
+            )
         return await asyncio.get_event_loop().run_in_executor(
             None, self.exchange.fetch_positions
         )

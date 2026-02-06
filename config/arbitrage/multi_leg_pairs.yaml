@@ -42,5 +42,4 @@ pairs:
       symbol: "ETH-USDC-PERP"  # 标准合约格式（系统会自动转换为 ETH）
     allow_reverse: true        # 允许双向套利（现货→合约 或 合约→现货）
     min_spread_pct: 0.01       # 最小价差 0.02%（根据实际情况调整）
-    enabled: true              # ✅ 已启用
-
+    enabled: false             # ⏸️ 禁用（本次仅做跨所套利）

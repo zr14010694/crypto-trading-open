@@ -241,6 +241,10 @@ class SymbolConversionService(ISymbolConversionService):
                     return f"{base}_{quote}_{mapped_type}"
                 else:
                     return f"{base}_{quote}"
+
+            elif format_type == 'standx':
+                # BTC-USD
+                return f"{base}-{quote}"
             
             elif format_type == 'binance':
                 # BTCUSDT
@@ -309,6 +313,16 @@ class SymbolConversionService(ISymbolConversionService):
                     base = parts[0]
                     quote = parts[1]
                     if quote == 'USDT':
+                        quote = 'USDC'
+                    return f"{base}-{quote}-PERP"
+
+            elif format_type == 'standx':
+                # BTC-USD -> BTC-USDC-PERP
+                parts = exchange_symbol.split('-')
+                if len(parts) >= 2:
+                    base = parts[0]
+                    quote = parts[1]
+                    if quote in ('USD', 'DUSD'):
                         quote = 'USDC'
                     return f"{base}-{quote}-PERP"
             

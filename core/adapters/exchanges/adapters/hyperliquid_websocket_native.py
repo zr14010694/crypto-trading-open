@@ -852,15 +852,22 @@ class HyperliquidNativeWebSocket:
 
     def _convert_to_hyperliquid_symbol(self, standard_symbol: str) -> str:
         """将标准格式转换为Hyperliquid格式"""
-        # 🔥 修复：使用HyperliquidBase的map_symbol方法
-        if hasattr(self._base, 'map_symbol'):
-            return self._base.map_symbol(standard_symbol)
-        
-        # 🔥 备用逻辑：BTC/USDC:PERP -> BTC-USD
-        if '/' in standard_symbol:
-            base = standard_symbol.split('/')[0]
-            return f"{base}-USD"
-        return standard_symbol
+        if not standard_symbol:
+            return standard_symbol
+        symbol = standard_symbol.strip()
+
+        # 统一提取基础币种作为 Hyperliquid coin
+        # 支持格式：
+        # - BTC-USDC-PERP
+        # - BTC/USDC:USDC
+        # - BTC_USDC_PERP
+        if '/' in symbol:
+            return symbol.split('/')[0]
+        if '-' in symbol:
+            return symbol.split('-')[0]
+        if '_' in symbol:
+            return symbol.split('_')[0]
+        return symbol
 
     def _safe_decimal(self, value: Any) -> Optional[Decimal]:
         """安全转换为Decimal"""
