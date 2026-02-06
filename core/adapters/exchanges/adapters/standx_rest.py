@@ -329,6 +329,14 @@ class StandXRest(StandXBase):
         async with session.get(url, params={"symbol": symbol}) as resp:
             return await resp.json()
 
+    async def query_funding_rates(self, symbol: str, start_time: int, end_time: int) -> List[Dict[str, Any]]:
+        session = await self._get_session()
+        url = f"{self.base_url}/api/query_funding_rates"
+        params = {"symbol": symbol, "start_time": str(start_time), "end_time": str(end_time)}
+        async with session.get(url, params=params) as resp:
+            data = await resp.json()
+            return data if isinstance(data, list) else []
+
     async def query_depth_book(self, symbol: str) -> Dict[str, Any]:
         session = await self._get_session()
         url = f"{self.base_url}/api/query_depth_book"

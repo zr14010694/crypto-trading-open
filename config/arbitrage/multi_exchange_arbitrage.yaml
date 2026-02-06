@@ -20,10 +20,9 @@ enabled: true
 mode: "one_to_many"
 allow_reverse: true
 min_spread_pct:
-center_exchange: "hyperliquid"
+center_exchange: "aster"
 counter_exchanges:
   - "standx"
 symbols:
   - "BTC-USDC-PERP"
   - "ETH-USDC-PERP"
-  - "SOL-USDC-PERP"

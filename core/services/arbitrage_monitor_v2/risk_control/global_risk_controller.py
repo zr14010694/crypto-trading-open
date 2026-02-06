@@ -322,30 +322,32 @@ class GlobalRiskController:
     
     def _get_usdc_balance(self, balances: List[BalanceData]) -> Optional[Decimal]:
         """
-        从余额列表中获取USDC余额
-        
+        从余额列表中获取稳定币余额（取最大非零值）
+
         🔥 重要：必须使用总余额（total），而不是可用余额（free）
         原因：
         - Backpack统一账户中，资金可能在借出（lend）或订单冻结中
         - 可用余额（free）可能为0，但总余额（total）不为0
         - 使用总余额才能正确判断账户是否有资金进行交易
         """
+        best: Optional[Decimal] = None
         for balance in balances:
             currency = (balance.currency or '').upper()
             if not currency:
                 continue
-            
-            # 🔥 兼容 USDC 及其变体（如 USDC.E），以及部分交易所使用的 USD/DUSD 标识
-            if currency == 'USDC' or currency.startswith('USDC') or currency == 'USD' or currency == 'DUSD':
+
+            # 🔥 兼容 USDC/USDT/USDF 及其变体，以及部分交易所使用的 USD/DUSD 标识
+            if currency in ('USDC', 'USD', 'DUSD', 'USDT', 'USDF') or currency.startswith('USDC'):
                 total = balance.total
-                if total is not None:
-                    return total
-                
-                # 某些交易所可能只提供free/used字段
-                free = balance.free or Decimal('0')
-                used = balance.used or Decimal('0')
-                return free + used
-        return None
+                if total is None:
+                    free = balance.free or Decimal('0')
+                    used = balance.used or Decimal('0')
+                    total = free + used
+
+                if total is not None and total > 0:
+                    if best is None or total > best:
+                        best = total
+        return best
 
     @staticmethod
     def _mask_wallet_address(address: Optional[str]) -> str:

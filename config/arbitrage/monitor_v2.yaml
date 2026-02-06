@@ -7,12 +7,14 @@
 # 模块路径: core/services/arbitrage_monitor_v2/
 # ============================================================================
 
-# 交易所配置（当前使用 EdgeX、Backpack、Lighter、Paradex 四个交易所）
+# 交易所配置（当前使用 Aster + StandX 套利对）
 exchanges:
-  - edgex
+#  - edgex
 # - backpack
-  - lighter
-  - paradex
+#  - lighter
+#  - paradex
+  - aster
+  - standx
 
 # 监控的交易对（标准化符号格式）
 # 🔥 当前订阅15个高交易量代币（其他代币已注释，方便后续恢复）
@@ -24,10 +26,10 @@ symbols:
  #  - DOGE-USDC-PERP
  #  - ENA-USDC-PERP
   - ETH-USDC-PERP
-  - HYPE-USDC-PERP
+#  - HYPE-USDC-PERP
  #  - LINK-USDC-PERP
 #   - LTC-USDC-PERP
-  - SOL-USDC-PERP
+#  - SOL-USDC-PERP
 #  - PAXG-USDC-PERP
  #  - TRUMP-USDC-PERP
  #  - TRX-USDC-PERP

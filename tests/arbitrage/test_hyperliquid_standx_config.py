@@ -15,13 +15,13 @@ def test_monitor_config_has_hyperliquid_and_standx():
     assert "BTC-USDC-PERP" in config.symbols
 
 
-def test_multi_exchange_pairs_include_hyperliquid_standx():
+def test_multi_exchange_pairs_include_aster_standx():
     manager = MultiExchangeArbitrageConfigManager()
     pairs = manager.get_pairs()
     assert pairs
     matches = [
         pair
         for pair in pairs
-        if {pair.exchange_a, pair.exchange_b} == {"hyperliquid", "standx"}
+        if {pair.exchange_a, pair.exchange_b} == {"aster", "standx"}
     ]
     assert matches

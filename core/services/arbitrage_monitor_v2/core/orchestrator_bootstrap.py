@@ -103,6 +103,7 @@ class OrchestratorBootstrap:
             "paradex": ExchangeType.PERPETUAL,
             "grvt": ExchangeType.PERPETUAL,
             "standx": ExchangeType.PERPETUAL,
+            "aster": ExchangeType.PERPETUAL,
         }
 
         try:
@@ -190,6 +191,31 @@ class OrchestratorBootstrap:
             exchange_config.api_key_index = auth.api_key_index
             logger.info(
                 f"🔑 [Lighter] 已加载认证配置: account_index={auth.account_index}, api_key_private_key_len={len(auth.api_key_private_key)}"
+            )
+
+        if exchange_name == "aster":
+            import os
+            user_addr = os.getenv("ASTER_USER_ADDRESS", "") or extra_params.get("user", "")
+            signer_addr = os.getenv("ASTER_SIGNER_ADDRESS", "") or extra_params.get("signer", "")
+            pk = os.getenv("ASTER_PRIVATE_KEY", "") or extra_params.get("private_key", "") or private_key or ""
+            exchange_config.extra_params["user"] = user_addr
+            exchange_config.extra_params["signer"] = signer_addr
+            exchange_config.extra_params["private_key"] = pk
+            exchange_config.extra_params["ssl_verify"] = extra_params.get("ssl_verify", False)
+            logger.info(
+                f"🔑 [Aster] 已加载认证配置: user={user_addr[:10]}..., signer={signer_addr[:10]}..."
+            )
+
+        if exchange_name == "standx":
+            import os
+            jwt = os.getenv("STANDX_API_TOKEN", "") or extra_params.get("jwt_token", "")
+            ed_key = os.getenv("STANDX_ED25519_PRIVATE_KEY", "") or private_key or ""
+            if jwt:
+                exchange_config.extra_params["jwt_token"] = jwt
+            if ed_key:
+                exchange_config.private_key = ed_key
+            logger.info(
+                f"🔑 [StandX] 已加载认证配置: jwt={'已设置' if jwt else '未设置'}, ed25519_key_len={len(ed_key)}"
             )
 
         return exchange_config

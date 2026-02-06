@@ -52,8 +52,11 @@ class StandXWebSocket(StandXBase):
         self._session: Optional[aiohttp.ClientSession] = None
         self._ws: Optional[aiohttp.ClientWebSocketResponse] = None
         self._order_ws: Optional[aiohttp.ClientWebSocketResponse] = None
-        self._callbacks: List[Any] = []
+        self._funding_rates: Dict[str, Any] = {}  # symbol -> funding_rate
+        self._ticker_callbacks: List[Any] = []
+        self._orderbook_callbacks: List[Any] = []
         self._order_callbacks: List[Any] = []
+        self._order_fill_callbacks: List[Any] = []
         self._position_callbacks: List[Any] = []
         self._balance_callbacks: List[Any] = []
         self._connected = False
@@ -129,6 +132,17 @@ class StandXWebSocket(StandXBase):
         order = self._parse_order_response(message)
         for cb in self._order_callbacks:
             await cb(order)
+        if order.status == OrderStatus.FILLED and self._order_fill_callbacks:
+            for cb in self._order_fill_callbacks:
+                await cb(order)
+
+    async def subscribe_orders(self, callback) -> None:
+        if callback not in self._order_callbacks:
+            self._order_callbacks.append(callback)
+
+    async def subscribe_order_fills(self, callback) -> None:
+        if callback not in self._order_fill_callbacks:
+            self._order_fill_callbacks.append(callback)
 
     async def subscribe(self, channel: str, symbol: Optional[str] = None) -> None:
         if not self._ws:
@@ -155,16 +169,19 @@ class StandXWebSocket(StandXBase):
 
         if channel == "price":
             ticker = self._parse_ticker(data)
-            for cb in self._callbacks:
+            for cb in self._ticker_callbacks:
                 await cb(ticker)
         elif channel == "depth_book":
             orderbook = self._parse_orderbook(data)
-            for cb in self._callbacks:
+            for cb in self._orderbook_callbacks:
                 await cb(orderbook)
         elif channel == "order":
             order = self._parse_order(data)
             for cb in self._order_callbacks:
                 await cb(order)
+            if order.status == OrderStatus.FILLED and self._order_fill_callbacks:
+                for cb in self._order_fill_callbacks:
+                    await cb(order)
         elif channel == "position":
             position = self._parse_position(data)
             for cb in self._position_callbacks:
@@ -185,14 +202,18 @@ class StandXWebSocket(StandXBase):
         if spread and isinstance(spread, list) and len(spread) >= 2:
             bid = spread[0]
             ask = spread[1]
+        symbol = data.get("symbol", "")
+        # WS price channel 不含 funding_rate，从缓存注入
+        funding_rate = data.get("funding_rate") or self._funding_rates.get(symbol)
         return TickerData(
-            symbol=data.get("symbol", ""),
+            symbol=symbol,
             timestamp=self._parse_timestamp(data.get("time")),
             bid=bid,
             ask=ask,
             last=data.get("last_price"),
             mark_price=data.get("mark_price"),
             index_price=data.get("index_price"),
+            funding_rate=funding_rate,
             raw_data=data,
         )
 

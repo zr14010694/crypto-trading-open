@@ -60,6 +60,7 @@ class ExchangeFactory:
             from .adapters.variational import VariationalAdapter
             from .adapters.grvt import GRVTAdapter
             from .adapters.standx import StandXAdapter
+            from .adapters.aster import AsterAdapter
 
             # 注册Hyperliquid适配器
             self.register_adapter(
@@ -206,6 +207,29 @@ class ExchangeFactory:
                 exchange_type=ExchangeType.PERPETUAL,
                 name="StandX",
                 description="StandX永续合约交易所",
+                supported_features=[
+                    "perpetual_trading", "websocket", "orderbook",
+                    "ticker", "trades", "user_data"
+                ],
+                default_config={
+                    "testnet": False,
+                    "default_leverage": 1,
+                    "enable_websocket": True,
+                    "rate_limits": {
+                        "ticker": {"max_requests": 100, "time_window": 60},
+                        "orderbook": {"max_requests": 100, "time_window": 60},
+                        "trading": {"max_requests": 20, "time_window": 60}
+                    }
+                }
+            )
+
+            # 注册Aster适配器
+            self.register_adapter(
+                exchange_id="aster",
+                adapter_class=AsterAdapter,
+                exchange_type=ExchangeType.FUTURES,
+                name="Aster Finance",
+                description="Aster Finance 永续合约交易所",
                 supported_features=[
                     "perpetual_trading", "websocket", "orderbook",
                     "ticker", "trades", "user_data"

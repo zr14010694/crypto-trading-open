@@ -1,0 +1,43 @@
+# ====================================
+# Aster Finance 交易所配置文件
+# ====================================
+# Aster Finance 永续合约 (V3 API)
+# 使用 ECDSA/EIP-712 签名认证
+# API文档: https://github.com/asterdex/api-docs
+
+aster:
+  api:
+    base_url: https://fapi.asterdex.com
+    ws_url: wss://fstream.asterdex.com
+    timeout: 30
+
+  # 认证配置 - 优先使用环境变量
+  # 环境变量：
+  #   ASTER_USER_ADDRESS     (主钱包地址)
+  #   ASTER_SIGNER_ADDRESS   (API代理钱包地址)
+  #   ASTER_PRIVATE_KEY      (API代理钱包私钥)
+  authentication:
+    api_key: ''
+    api_secret: ''
+
+  extra_params:
+    user: ''           # 主钱包地址 (ERC20)
+    signer: ''         # API代理钱包地址
+    private_key: ''    # API代理钱包私钥
+    recv_window: 50000
+
+  subscription_mode:
+    mode: predefined
+    predefined:
+      symbols:
+        - BTCUSDT
+        - ETHUSDT
+      data_types:
+        ticker: true
+        orderbook: true
+        trades: false
+        user_data: false
+
+  enabled: true
+  name: Aster Finance
+  testnet: false

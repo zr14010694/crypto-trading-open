@@ -74,6 +74,20 @@ exchange_formats:
       PERP: ""
       PERPETUAL: ""
     
+  aster:
+    format_type: "aster"
+    pattern: "{base}{quote}"  # 例如：BTCUSDT
+    separator: ""
+    supported_types: ["PERP", "FUTURES"]
+    default_quote: "USDT"
+    quote_mapping:
+      USDC: "USDT"
+      USD: "USDT"
+    type_mapping:
+      PERP: ""
+      PERPETUAL: ""
+      FUTURES: ""
+
   binance:
     format_type: "binance"
     pattern: "{base}{quote}"  # 例如：BTCUSDT
@@ -139,7 +153,12 @@ symbol_mappings:
       "BTC-USDC-PERP": "BTC-USD"
       "ETH-USDC-PERP": "ETH-USD"
       "SOL-USDC-PERP": "SOL-USD"
-  
+
+    aster:
+      "BTC-USDC-PERP": "BTCUSDT"
+      "ETH-USDC-PERP": "ETHUSDT"
+      "SOL-USDC-PERP": "SOLUSDT"
+
   # 交易所格式到标准格式的反向映射
   exchange_to_standard:
     lighter:
@@ -217,6 +236,11 @@ symbol_mappings:
       "UNI_USDC_PERP": "UNI-USDC-PERP"
       "EIGEN_USDC_PERP": "EIGEN-USDC-PERP"
     
+    aster:
+      "BTCUSDT": "BTC-USDC-PERP"
+      "ETHUSDT": "ETH-USDC-PERP"
+      "SOLUSDT": "SOL-USDC-PERP"
+
     binance:
       "BTC-USDC-PERP": "BTCUSDT"
       "ETH-USDC-PERP": "ETHUSDT"
@@ -255,6 +279,11 @@ validation:
       max_length: 50
       required_separators: ["-"]
     
+    aster:
+      min_length: 6  # 最小长度：BTCUSD
+      max_length: 20
+      required_separators: []
+
     binance:
       min_length: 6  # 最小长度：BTCUSD
       max_length: 50

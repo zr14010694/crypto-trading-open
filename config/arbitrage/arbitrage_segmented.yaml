@@ -36,8 +36,8 @@ decision:
 # ============================================================================
 risk_control:
   balance_management:
-    min_balance_warning: 100.0      # 余额警告阈值（USDC），余额 < 此值时发出警告但继续运行
-    min_balance_close_position: 50.0     # 余额强制平仓阈值（USDC），余额 < 此值时强制停止并平仓
+    min_balance_warning: 40.0      # 余额警告阈值（USDC），余额 < 此值时发出警告但继续运行
+    min_balance_close_position: 10.0     # 余额强制平仓阈值（USDC），余额 < 此值时强制停止并平仓
     check_interval: 60              # 余额检查间隔（秒），每 N 秒检查一次余额
 
 # ============================================================================

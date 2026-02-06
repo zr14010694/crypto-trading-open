@@ -10,7 +10,7 @@
 import asyncio
 import time
 from typing import Dict, Optional, List
-from datetime import datetime
+from datetime import datetime, timezone
 from collections import defaultdict
 
 from core.adapters.exchanges.models import OrderBookData, TickerData
@@ -314,8 +314,9 @@ class DataProcessor:
         if not orderbook:
             return None
         
-        # 🔥 时效性检查：需要同时满足“交易所时间戳”和“本地接收时间”两种约束
-        now = datetime.now()
+        # 🔥 时效性检查：需要同时满足"交易所时间戳"和"本地接收时间"两种约束
+        now_aware = datetime.now(timezone.utc)
+        now_naive = datetime.now()
         exchange_timestamp = (
             getattr(orderbook, 'exchange_timestamp', None)
             or getattr(orderbook, 'timestamp', None)
@@ -324,9 +325,10 @@ class DataProcessor:
             getattr(orderbook, 'received_timestamp', None)
             or self.orderbook_timestamps.get(exchange, {}).get(symbol)
         )
-        
+
         # 优先验证交易所原始时间戳
         if exchange_timestamp:
+            now = now_aware if exchange_timestamp.tzinfo else now_naive
             exchange_age = (now - exchange_timestamp).total_seconds()
             if exchange_age > max_age_seconds:
                 self._log_stale_orderbook(
@@ -343,7 +345,8 @@ class DataProcessor:
             if isinstance(received_timestamp, (int, float)):
                 local_age = time.time() - float(received_timestamp)
             else:
-                local_age = (now - received_timestamp).total_seconds()
+                now_for_recv = now_aware if getattr(received_timestamp, 'tzinfo', None) else now_naive
+                local_age = (now_for_recv - received_timestamp).total_seconds()
             if local_age > max_age_seconds:
                 self._log_stale_orderbook(
                     exchange=exchange,

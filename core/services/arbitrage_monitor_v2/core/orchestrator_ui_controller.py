@@ -370,13 +370,16 @@ class OrchestratorUIController:
 
             if symbol in orc.symbol_spreads and orc.symbol_spreads[symbol]:
                 latest_spread = orc.symbol_spreads[symbol][-1]
-                grid_data["current_spread_pct"] = float(
-                    latest_spread.spread_pct)
+                if latest_spread.spread_pct is not None:
+                    grid_data["current_spread_pct"] = float(
+                        latest_spread.spread_pct)
 
                 if len(orc.symbol_spreads[symbol]) >= 2:
                     prev_spread = orc.symbol_spreads[symbol][-2].spread_pct
                     curr_spread = latest_spread.spread_pct
-                    if curr_spread > prev_spread:
+                    if prev_spread is None or curr_spread is None:
+                        pass
+                    elif curr_spread > prev_spread:
                         grid_data["spread_trend"] = "↗"
                     elif curr_spread < prev_spread:
                         grid_data["spread_trend"] = "↘"

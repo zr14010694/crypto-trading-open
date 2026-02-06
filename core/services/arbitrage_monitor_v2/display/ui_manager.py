@@ -514,7 +514,7 @@ class UIManager:
 
             for item in balances:
                 currency = (item.get("currency") or "").upper()
-                if currency == "USDC" or currency.startswith("USDC") or currency == "USD":
+                if currency in ("USDC", "USD", "DUSD", "USDT", "USDF") or currency.startswith("USDC"):
                     total_value = item.get("total")
                     if total_value is None:
                         free = item.get("free") or 0.0

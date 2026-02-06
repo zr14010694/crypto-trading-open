@@ -567,7 +567,10 @@ class UIComponents:
                             spread_pct = spread_data.get('spread_pct', 0)
                         else:
                             continue
-                        
+
+                        if spread_pct is None:
+                            continue
+
                         if spread_pct > max_spread_pct:
                             max_spread_pct = spread_pct
                             best_opening_spread = spread_data

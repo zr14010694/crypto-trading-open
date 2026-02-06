@@ -4,9 +4,11 @@ StandX 交易所适配器
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Set
 import uuid
 import asyncio
+import logging
+import time
 from decimal import Decimal
 import json
 
@@ -42,6 +44,8 @@ class StandXAdapter(ExchangeAdapter):
         self.websocket.session_id = self.session_id
         self._listen_task: Optional[asyncio.Task] = None
         self._order_listen_task: Optional[asyncio.Task] = None
+        self._funding_rate_task: Optional[asyncio.Task] = None
+        self._funding_rate_symbols: Set[str] = set()
 
         self._position_cache: Dict[str, PositionData] = {}
         self._order_cache: Dict[str, OrderData] = {}
@@ -67,6 +71,9 @@ class StandXAdapter(ExchangeAdapter):
         if self._order_listen_task:
             self._order_listen_task.cancel()
             self._order_listen_task = None
+        if self._funding_rate_task:
+            self._funding_rate_task.cancel()
+            self._funding_rate_task = None
         await self.websocket.disconnect_order_stream()
         await self.websocket.disconnect()
         await self.rest.close()
@@ -223,14 +230,18 @@ class StandXAdapter(ExchangeAdapter):
         async def _wrapper(ticker: TickerData):
             callback(ticker.symbol, ticker)
 
-        self.websocket._callbacks.append(_wrapper)
+        self.websocket._ticker_callbacks.append(_wrapper)
         await self.websocket.subscribe("price", symbol)
+        # 启动费率轮询（WS price channel 不含 funding_rate）
+        self._funding_rate_symbols.add(symbol)
+        if not self._funding_rate_task:
+            self._funding_rate_task = asyncio.create_task(self._poll_funding_rates())
 
     async def subscribe_orderbook(self, symbol: str, callback) -> None:
         async def _wrapper(orderbook: OrderBookData):
             callback(orderbook.symbol, orderbook)
 
-        self.websocket._callbacks.append(_wrapper)
+        self.websocket._orderbook_callbacks.append(_wrapper)
         await self.websocket.subscribe("depth_book", symbol)
 
     async def subscribe_trades(self, symbol: str, callback) -> None:
@@ -246,6 +257,32 @@ class StandXAdapter(ExchangeAdapter):
     async def unsubscribe(self, symbol: Optional[str] = None) -> None:
         # StandX WebSocket 未实现取消订阅，留空
         return None
+
+    async def _poll_funding_rates(self) -> None:
+        """后台轮询 query_funding_rates 获取最新 funding_rate，注入到 WS 缓存"""
+        logger = self.logger or logging.getLogger("ExchangeAdapter.standx")
+        while True:
+            try:
+                now_ms = int(time.time() * 1000)
+                two_hours_ago_ms = now_ms - 2 * 3600 * 1000
+                for symbol in list(self._funding_rate_symbols):
+                    try:
+                        rates = await self.rest.query_funding_rates(
+                            symbol, two_hours_ago_ms, now_ms
+                        )
+                        if rates:
+                            latest = rates[-1]
+                            rate = latest.get("funding_rate")
+                            if rate is not None:
+                                self.websocket._funding_rates[symbol] = rate
+                    except Exception:
+                        pass
+                await asyncio.sleep(60)  # 费率每小时更新，60秒轮询足够
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                logger.debug(f"[StandX] 费率轮询异常: {e}")
+                await asyncio.sleep(60)
 
     def _handle_internal_order_update(self, order: OrderData) -> None:
         self._order_cache[order.id] = order
