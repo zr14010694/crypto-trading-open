@@ -283,6 +283,11 @@ class AsterRest(AsterBase):
         )
 
     def _parse_order(self, data: Dict[str, Any]) -> OrderData:
+        order_id = data.get("orderId")
+        if order_id is None:
+            error_code = data.get("code")
+            error_msg = data.get("msg", "unknown")
+            raise Exception(f"Aster API error: code={error_code}, msg={error_msg}, raw={data}")
         amount = self._safe_decimal(data.get("origQty"))
         filled = self._safe_decimal(data.get("executedQty"))
         remaining = amount - filled

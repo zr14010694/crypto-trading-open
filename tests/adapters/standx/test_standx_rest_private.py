@@ -112,3 +112,22 @@ def test_parse_positions_and_balances():
     assert balances[0].currency == "DUSD"
     assert balances[0].free == Decimal("100")
     assert balances[0].used == Decimal("5")
+
+
+def test_build_order_payload_quantizes_price_and_qty_by_precision():
+    rest = StandXRest(_make_config("0x" + "00" * 32, "jwt-token"))
+    # (price_decimals, qty_decimals)
+    rest._precision_cache["BTC-USD"] = (1, 3)
+
+    payload = rest._build_order_payload(
+        symbol="BTC-USD",
+        side=OrderSide.SELL,
+        order_type=OrderType.LIMIT,
+        qty=Decimal("0.01049"),
+        price=Decimal("1998.9001500"),
+        time_in_force="gtc",
+        reduce_only=False,
+    )
+
+    assert payload["qty"] == "0.010"
+    assert payload["price"] == "1998.9"

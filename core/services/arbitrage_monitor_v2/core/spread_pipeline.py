@@ -12,8 +12,9 @@ Spread Pipeline
 import asyncio
 import logging
 import time
+from datetime import datetime
 from decimal import Decimal
-from typing import TYPE_CHECKING, Dict, List, Optional, Tuple
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Tuple
 
 from core.adapters.exchanges.utils.setup_logging import LoggingConfig
 from ..analysis.spread_calculator import SpreadData
@@ -39,6 +40,9 @@ class SpreadPipeline:
     def __init__(self, orchestrator: "UnifiedOrchestrator") -> None:
         self.orchestrator = orchestrator
         self._throttle_times: Dict[str, float] = {}
+        self._missing_since: Dict[str, float] = {}
+        self._missing_last_log: Dict[str, float] = {}
+        self._missing_context: Dict[str, Dict[str, str]] = {}
 
     async def process_symbol(self, symbol: str) -> None:
         """
@@ -267,7 +271,16 @@ class SpreadPipeline:
             max_age_seconds=orc.data_freshness_seconds,
         )
         if not orderbook_a or not orderbook_b:
+            self._log_missing_pair_orderbook(
+                symbol_key=symbol_key,
+                base_symbol=base_symbol,
+                exchange_a=exchange_a,
+                exchange_b=exchange_b,
+                orderbook_a=orderbook_a,
+                orderbook_b=orderbook_b,
+            )
             return
+        self._clear_missing_pair_orderbook(symbol_key)
 
         orderbooks = {
             exchange_a: orderbook_a,
@@ -508,6 +521,183 @@ class SpreadPipeline:
             logger.info(message)
             self._throttle_times[key] = now
 
+    def _get_last_received_ts(
+        self,
+        exchange: str,
+        symbol: str,
+    ) -> Optional[datetime]:
+        data_processor = self.orchestrator.data_processor
+        getter = getattr(data_processor, "get_last_orderbook_received_timestamp", None)
+        if callable(getter):
+            try:
+                return getter(exchange, symbol)
+            except Exception:
+                return None
+        return data_processor.orderbook_timestamps.get(exchange, {}).get(symbol)
+
+    @staticmethod
+    def _fmt_timestamp(ts: Optional[datetime]) -> str:
+        if not ts:
+            return "-"
+        return ts.strftime("%H:%M:%S.%f")[:-3]
+
+    def _log_missing_pair_orderbook(
+        self,
+        *,
+        symbol_key: str,
+        base_symbol: str,
+        exchange_a: str,
+        exchange_b: str,
+        orderbook_a: Optional["OrderBookData"],
+        orderbook_b: Optional["OrderBookData"],
+    ) -> None:
+        now = time.time()
+        self._missing_context[symbol_key] = {
+            "base_symbol": base_symbol,
+            "exchange_a": exchange_a,
+            "exchange_b": exchange_b,
+        }
+        missing_since = self._missing_since.get(symbol_key)
+        if missing_since is None:
+            missing_since = now
+            self._missing_since[symbol_key] = now
+
+        last_log = self._missing_last_log.get(symbol_key, 0.0)
+        if now - last_log < 30.0:
+            return
+        self._missing_last_log[symbol_key] = now
+
+        missing_legs: List[str] = []
+        if not orderbook_a:
+            missing_legs.append(exchange_a)
+        if not orderbook_b:
+            missing_legs.append(exchange_b)
+
+        recv_a = self._get_last_received_ts(exchange_a, base_symbol)
+        recv_b = self._get_last_received_ts(exchange_b, base_symbol)
+        age_a = (now - recv_a.timestamp()) if recv_a else None
+        age_b = (now - recv_b.timestamp()) if recv_b else None
+        freshness = float(self.orchestrator.data_freshness_seconds)
+        state_a = "有盘口" if orderbook_a else ("无消息" if recv_a is None else ("消息过期" if age_a and age_a > freshness else "待确认"))
+        state_b = "有盘口" if orderbook_b else ("无消息" if recv_b is None else ("消息过期" if age_b and age_b > freshness else "待确认"))
+
+        logger.warning(
+            "⚠️ [价差] %s: 盘口数据缺失 (%s=%s, %s=%s)，缺失腿=%s，状态推断(%s=%s, %s=%s)，"
+            "last_local(%s)=%s age=%s，last_local(%s)=%s age=%s，连续缺失=%.1fs，freshness=%.1fs，跳过本轮",
+            symbol_key,
+            exchange_a,
+            "有" if orderbook_a else "无",
+            exchange_b,
+            "有" if orderbook_b else "无",
+            ",".join(missing_legs) if missing_legs else "-",
+            exchange_a,
+            state_a,
+            exchange_b,
+            state_b,
+            exchange_a,
+            self._fmt_timestamp(recv_a),
+            f"{age_a:.1f}s" if age_a is not None else "-",
+            exchange_b,
+            self._fmt_timestamp(recv_b),
+            f"{age_b:.1f}s" if age_b is not None else "-",
+            now - missing_since,
+            freshness,
+        )
+
+    def _clear_missing_pair_orderbook(self, symbol_key: str) -> None:
+        missing_since = self._missing_since.pop(symbol_key, None)
+        self._missing_last_log.pop(symbol_key, None)
+        self._missing_context.pop(symbol_key, None)
+        if missing_since is None:
+            return
+        recovered_after = max(0.0, time.time() - missing_since)
+        logger.info(
+            "✅ [价差] %s: 盘口数据恢复，连续缺失结束 (持续 %.1fs)",
+            symbol_key,
+            recovered_after,
+        )
+
+    def get_missing_orderbook_diagnostics(self) -> Dict[str, Dict[str, Any]]:
+        """
+        返回按 trading_pair_id 聚合的盘口缺失诊断信息。
+        用于 orchestrator 侧健康日志/自愈决策，不改变交易逻辑。
+        """
+        now = time.time()
+        diagnostics: Dict[str, Dict[str, Any]] = {}
+        freshness = float(self.orchestrator.data_freshness_seconds)
+
+        for symbol_key, missing_since in self._missing_since.items():
+            context = self._missing_context.get(symbol_key) or {}
+            base_symbol = context.get("base_symbol")
+            exchange_a = context.get("exchange_a")
+            exchange_b = context.get("exchange_b")
+            if not base_symbol or not exchange_a or not exchange_b:
+                continue
+
+            recv_a = self._get_last_received_ts(exchange_a, base_symbol)
+            recv_b = self._get_last_received_ts(exchange_b, base_symbol)
+            age_a = (now - recv_a.timestamp()) if recv_a else None
+            age_b = (now - recv_b.timestamp()) if recv_b else None
+
+            has_orderbook_a = bool(
+                self.orchestrator.data_processor.get_orderbook(
+                    exchange_a,
+                    base_symbol,
+                    max_age_seconds=self.orchestrator.data_freshness_seconds,
+                )
+            )
+            has_orderbook_b = bool(
+                self.orchestrator.data_processor.get_orderbook(
+                    exchange_b,
+                    base_symbol,
+                    max_age_seconds=self.orchestrator.data_freshness_seconds,
+                )
+            )
+
+            state_a = (
+                "has_orderbook"
+                if has_orderbook_a
+                else ("no_messages" if recv_a is None else ("stale" if age_a and age_a > freshness else "unknown"))
+            )
+            state_b = (
+                "has_orderbook"
+                if has_orderbook_b
+                else ("no_messages" if recv_b is None else ("stale" if age_b and age_b > freshness else "unknown"))
+            )
+
+            missing_legs: List[str] = []
+            if not has_orderbook_a:
+                missing_legs.append(exchange_a)
+            if not has_orderbook_b:
+                missing_legs.append(exchange_b)
+
+            diagnostics[symbol_key] = {
+                "symbol_key": symbol_key,
+                "base_symbol": base_symbol,
+                "exchange_a": exchange_a,
+                "exchange_b": exchange_b,
+                "missing_legs": missing_legs,
+                "missing_duration_seconds": max(0.0, now - missing_since),
+                "freshness_seconds": freshness,
+                "leg_a": {
+                    "exchange": exchange_a,
+                    "has_orderbook": has_orderbook_a,
+                    "state": state_a,
+                    "last_local_ts": recv_a.isoformat() if recv_a else None,
+                    "age_seconds": age_a,
+                },
+                "leg_b": {
+                    "exchange": exchange_b,
+                    "has_orderbook": has_orderbook_b,
+                    "state": state_b,
+                    "last_local_ts": recv_b.isoformat() if recv_b else None,
+                    "age_seconds": age_b,
+                },
+                "last_log_ts": self._missing_last_log.get(symbol_key),
+            }
+
+        return diagnostics
+
     def _get_funding_rate_data(
         self,
         symbol: str,
@@ -540,4 +730,3 @@ class SpreadPipeline:
         except Exception as exc:
             logger.debug(f"[统一调度] 获取资金费率失败: {symbol}: {exc}")
             return None
-

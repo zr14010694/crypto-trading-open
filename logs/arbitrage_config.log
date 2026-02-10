@@ -1,9 +1,10 @@
-2026-02-06 15:06:29.180 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_system_mode_config:132 - 🎯 [配置管理] 监控模式: False
-2026-02-06 15:06:29.180 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_system_mode_config:137 - 📊 [配置管理] 数据新鲜度阈值: 3.0秒
-2026-02-06 15:06:29.180 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_execution_config:208 - ✅ [配置管理] 数量配置已加载: 4个代币
-2026-02-06 15:06:29.180 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_execution_config:321 [PRICE] - ⚙️ [配置管理] lighter: 已启用 smart_second_leg_price (智能盘口价格切换)
-2026-02-06 15:06:29.180 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_execution_config:326 [ORDER] - ✅ [配置管理] 交易所下单模式已加载: 7 个
-2026-02-06 15:06:29.180 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_execution_config:355 - ✅ [配置管理] 交易所手续费配置已加载: 5 个
-2026-02-06 15:06:29.180 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_execution_config:384 - ✅ [配置管理] 交易所限速配置已加载: 5 条
-2026-02-06 15:06:29.180 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_from_file:121 - ✅ [配置管理] 配置已从文件加载: config/arbitrage/arbitrage_unified.yaml
-2026-02-06 15:06:29.180 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_from_file:122 - 📊 [配置管理] 系统模式: ⚡ 实盘模式
+2026-02-10 16:21:46.555 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_system_mode_config:132 - 🎯 [配置管理] 监控模式: False
+2026-02-10 16:21:46.555 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_system_mode_config:137 - 📊 [配置管理] 数据新鲜度阈值: 3.0秒
+2026-02-10 16:21:46.555 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_execution_config:208 - ✅ [配置管理] 数量配置已加载: 4个代币
+2026-02-10 16:21:46.555 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_execution_config:321 [PRICE] - ⚙️ [配置管理] lighter: 已启用 smart_second_leg_price (智能盘口价格切换)
+2026-02-10 16:21:46.555 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_execution_config:297 - ⚙️ [配置管理] standx: 限价+市价模式中作为第二腿时将改用激进限价执行
+2026-02-10 16:21:46.555 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_execution_config:326 [ORDER] - ✅ [配置管理] 交易所下单模式已加载: 9 个
+2026-02-10 16:21:46.555 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_execution_config:355 - ✅ [配置管理] 交易所手续费配置已加载: 7 个
+2026-02-10 16:21:46.555 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_execution_config:384 - ✅ [配置管理] 交易所限速配置已加载: 5 条
+2026-02-10 16:21:46.555 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_from_file:121 - ✅ [配置管理] 配置已从文件加载: config/arbitrage/arbitrage_unified.yaml
+2026-02-10 16:21:46.555 [INFO    ] [core.services.arbitrage_monitor_v2.config.unified_config_manager] _load_from_file:122 - 📊 [配置管理] 系统模式: ⚡ 实盘模式

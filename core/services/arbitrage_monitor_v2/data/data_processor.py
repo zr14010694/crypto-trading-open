@@ -73,6 +73,8 @@ class DataProcessor:
         self._stale_orderbook_log_times: Dict[str, Dict[str, float]] = defaultdict(dict)
         self._stale_orderbook_log_interval = 120.0  # 同一交易对的过期警告至少间隔120秒，减少刷屏
         self._stale_orderbook_suppress_count: Dict[str, Dict[str, int]] = defaultdict(dict)
+        self._stale_orderbook_first_seen: Dict[str, Dict[str, float]] = defaultdict(dict)
+        self._stale_orderbook_warn_threshold = 60.0  # 同一 stale 键持续超过 60s 升级 WARNING
         # 队列峰值监控
         self.orderbook_queue_peak: int = 0
         self.ticker_queue_peak: int = 0
@@ -366,7 +368,16 @@ class DataProcessor:
             )
             return None
         
+        self._clear_stale_orderbook_state(exchange, symbol)
         return orderbook
+
+    def get_last_orderbook_received_timestamp(self, exchange: str, symbol: str) -> Optional[datetime]:
+        """获取最后一次接收订单簿的本地时间戳。"""
+        return self.orderbook_timestamps.get(exchange, {}).get(symbol)
+
+    def get_last_orderbook_exchange_timestamp(self, exchange: str, symbol: str) -> Optional[datetime]:
+        """获取最后一次订单簿的交易所原始时间戳。"""
+        return self.orderbook_exchange_timestamps.get(exchange, {}).get(symbol)
 
     def _log_stale_orderbook(
         self,
@@ -384,6 +395,11 @@ class DataProcessor:
         symbol_key = f"{symbol}:{reason}"
         last_log_ts = self._stale_orderbook_log_times[exchange].get(symbol_key, 0)
         suppress_bucket = self._stale_orderbook_suppress_count[exchange].get(symbol_key, 0)
+        first_seen = self._stale_orderbook_first_seen[exchange].get(symbol_key)
+        if first_seen is None:
+            first_seen = now_ts
+            self._stale_orderbook_first_seen[exchange][symbol_key] = first_seen
+        stale_duration = max(0.0, now_ts - first_seen)
 
         if now_ts - last_log_ts < self._stale_orderbook_log_interval:
             # 统计被抑制的次数，便于下次打印时汇报
@@ -393,18 +409,44 @@ class DataProcessor:
         suppressed = self._stale_orderbook_suppress_count[exchange].pop(symbol_key, 0)
         self._stale_orderbook_log_times[exchange][symbol_key] = now_ts
 
-        # 改为 DEBUG，避免高频刷屏占用 I/O
+        recv_ts = self.orderbook_timestamps.get(exchange, {}).get(symbol)
+        exch_ts = self.orderbook_exchange_timestamps.get(exchange, {}).get(symbol)
+        recv_str = recv_ts.strftime("%H:%M:%S.%f")[:-3] if recv_ts else "-"
+        exch_str = exch_ts.strftime("%H:%M:%S.%f")[:-3] if exch_ts else "-"
+        base_suffix = (
+            f" | 持续={stale_duration:.1f}s"
+            f" | last_local={recv_str}"
+            f" | last_exchange={exch_str}"
+            + (f" | 抑制重复: {suppressed} 次" if suppressed else "")
+        )
+
+        # 默认保持 DEBUG，持续 stale 超过阈值后升级 WARNING，便于快速定位链路问题
+        log_fn = logger.warning if stale_duration >= self._stale_orderbook_warn_threshold else logger.debug
         if age >= 0:
-            logger.debug(
+            log_fn(
                 f"⚠️ [数据过期] {exchange} {symbol} {reason} "
                 f"(年龄: {age:.2f}秒 > 阈值: {max_age:.2f}秒)，拒绝返回"
-                + (f" | 抑制重复: {suppressed} 次" if suppressed else "")
+                + base_suffix
             )
         else:
-            logger.debug(
+            log_fn(
                 f"❌ [时间戳缺失] {exchange} {symbol} {reason}，拒绝返回"
-                + (f" | 抑制重复: {suppressed} 次" if suppressed else "")
+                + base_suffix
             )
+
+    def _clear_stale_orderbook_state(self, exchange: str, symbol: str) -> None:
+        """订单簿恢复新鲜时，清理该 symbol 的 stale 状态累计。"""
+        prefix = f"{symbol}:"
+        stale_log_times = self._stale_orderbook_log_times.get(exchange, {})
+        stale_suppress = self._stale_orderbook_suppress_count.get(exchange, {})
+        stale_first_seen = self._stale_orderbook_first_seen.get(exchange, {})
+
+        for key in [k for k in stale_log_times.keys() if k.startswith(prefix)]:
+            stale_log_times.pop(key, None)
+        for key in [k for k in stale_suppress.keys() if k.startswith(prefix)]:
+            stale_suppress.pop(key, None)
+        for key in [k for k in stale_first_seen.keys() if k.startswith(prefix)]:
+            stale_first_seen.pop(key, None)
     
     def get_ticker(self, exchange: str, symbol: str) -> Optional[TickerData]:
         """
@@ -482,4 +524,3 @@ class DataProcessor:
         has_orderbook = symbol in self.orderbooks.get(exchange, {})
         has_ticker = symbol in self.tickers.get(exchange, {})
         return has_orderbook  # Ticker是可选的
-

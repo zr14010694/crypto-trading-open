@@ -10,7 +10,7 @@ from __future__ import annotations
 import asyncio
 import logging
 from datetime import datetime
-from decimal import Decimal
+from decimal import Decimal, ROUND_DOWN
 from typing import Any, Dict, List, Optional
 
 from ..adapter import ExchangeAdapter
@@ -32,6 +32,27 @@ from .aster_websocket import AsterWebSocket
 
 
 class AsterAdapter(ExchangeAdapter):
+    # Aster 各交易对数量精度 (quantityPrecision)
+    _SYMBOL_QTY_PRECISION = {
+        "BTCUSDT": 4,
+        "ETHUSDT": 3,
+        "SOLUSDT": 0,
+    }
+
+    # 标准符号 → Aster 交易所符号
+    _SYMBOL_TO_EXCHANGE = {
+        "BTC-USDC-PERP": "BTCUSDT",
+        "ETH-USDC-PERP": "ETHUSDT",
+        "SOL-USDC-PERP": "SOLUSDT",
+    }
+    _SYMBOL_FROM_EXCHANGE = {v: k for k, v in _SYMBOL_TO_EXCHANGE.items()}
+
+    def _to_exchange_symbol(self, symbol: str) -> str:
+        return self._SYMBOL_TO_EXCHANGE.get(symbol, symbol)
+
+    def _from_exchange_symbol(self, symbol: str) -> str:
+        return self._SYMBOL_FROM_EXCHANGE.get(symbol, symbol)
+
     def __init__(self, config: ExchangeConfig, event_bus=None):
         super().__init__(config, event_bus)
         if self.logger and hasattr(self.logger, "logger"):
@@ -155,13 +176,27 @@ class AsterAdapter(ExchangeAdapter):
         price: Optional[Decimal] = None,
         params: Optional[Dict[str, Any]] = None,
     ) -> OrderData:
+        exchange_symbol = self._to_exchange_symbol(symbol)
+        precision = self.rest._precision_cache.get(exchange_symbol)
+        if precision:
+            price_prec, qty_prec = precision
+        else:
+            price_prec = None
+            qty_prec = self._SYMBOL_QTY_PRECISION.get(exchange_symbol, 5)
+
+        qty_step = Decimal("1").scaleb(-qty_prec)
+        quantized = amount.quantize(qty_step, rounding=ROUND_DOWN)
+
         order_params: Dict[str, Any] = {
-            "symbol": symbol,
+            "symbol": exchange_symbol,
             "side": "BUY" if side == OrderSide.BUY else "SELL",
             "type": order_type.value.upper(),
-            "quantity": str(amount),
+            "quantity": str(quantized),
         }
         if price is not None:
+            if price_prec is not None:
+                price_step = Decimal("1").scaleb(-price_prec)
+                price = price.quantize(price_step, rounding=ROUND_DOWN)
             order_params["price"] = str(price)
         if order_type == OrderType.LIMIT:
             order_params["timeInForce"] = (params or {}).get("timeInForce", "GTC")
@@ -172,15 +207,21 @@ class AsterAdapter(ExchangeAdapter):
 
         data = await self.rest.new_order(order_params)
         order = self.rest._parse_order(data)
+        order.symbol = symbol  # 保持标准符号
         self._order_cache[order.id] = order
         return order
 
     async def cancel_order(self, order_id: str, symbol: Optional[str] = None) -> OrderData:
+        std_symbol = symbol
         if not symbol:
             cached = self._order_cache.get(order_id)
             symbol = cached.symbol if cached else "BTCUSDT"
-        data = await self.rest.cancel_order(symbol, int(order_id))
-        return self.rest._parse_order(data)
+            std_symbol = symbol
+        exchange_symbol = self._to_exchange_symbol(symbol)
+        data = await self.rest.cancel_order(exchange_symbol, int(order_id))
+        order = self.rest._parse_order(data)
+        order.symbol = std_symbol  # 保持标准符号
+        return order
 
     async def cancel_all_orders(self, symbol: Optional[str] = None) -> List[OrderData]:
         if symbol:
@@ -188,11 +229,16 @@ class AsterAdapter(ExchangeAdapter):
         return []
 
     async def get_order(self, order_id: str, symbol: Optional[str] = None) -> OrderData:
+        std_symbol = symbol
         if not symbol:
             cached = self._order_cache.get(order_id)
             symbol = cached.symbol if cached else "BTCUSDT"
-        data = await self.rest.get_order(symbol, int(order_id))
-        return self.rest._parse_order(data)
+            std_symbol = symbol
+        exchange_symbol = self._to_exchange_symbol(symbol)
+        data = await self.rest.get_order(exchange_symbol, int(order_id))
+        order = self.rest._parse_order(data)
+        order.symbol = std_symbol  # 保持标准符号
+        return order
 
     async def get_open_orders(self, symbol: Optional[str] = None) -> List[OrderData]:
         data = await self.rest.get_open_orders(symbol)
@@ -291,6 +337,16 @@ class AsterAdapter(ExchangeAdapter):
 
     async def unsubscribe(self, symbol: Optional[str] = None) -> None:
         pass
+
+    def reset_market_callbacks(self) -> None:
+        """
+        仅清理行情回调，供断流重连后重订阅使用，避免重复回调导致重复入队。
+        不影响订单/持仓内部回调。
+        """
+        if hasattr(self.websocket, "_ticker_callbacks"):
+            self.websocket._ticker_callbacks.clear()
+        if hasattr(self.websocket, "_orderbook_callbacks"):
+            self.websocket._orderbook_callbacks.clear()
 
     # ── 内部回调 ──
 

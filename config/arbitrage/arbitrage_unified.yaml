@@ -146,6 +146,19 @@ arbitrage_execution:
       reuse_signal_price_when_second_leg: false  # 🔧 第二腿激进限价是否复用决策引擎的信号价（true=不重新拉盘口价）
       smart_second_leg_price: true      # 🔧 智能盘口价格切换：true=根据第一腿表现自动决定是否复用信号价
     
+    aster:
+      order_mode: "limit"               # Aster 作为 maker 腿 (0.5bps)
+      priority: 2                       # 优先级较高，先挂限价单
+      limit_price_offset_pct: 0.0       # 市价模式下不使用
+      use_tick_precision: true          # 被动挂单: 买=卖一-1tick, 卖=买一+1tick
+
+    standx:
+      order_mode: "market"             # StandX 作为 taker 腿 (4bps)，市价成交
+      priority: 1                       # 优先级较低
+      limit_price_offset_pct: 0.00025   # 第二腿激进限价偏移（2.5 bps）
+      use_tick_precision: false          # 关闭被动挂单，启用百分比激进定价
+      force_limit_when_second_leg: true  # 第二腿改用激进限价执行，降低市价冲击
+
     # 针对同一交易所不同交易对的精细化设置（示例：lighter 内部多腿套利）
     lighter:PAXG-USD-PERP:
       order_mode: "market"               # PAXG 腿改为限价单，配合双限价模式（共用）
@@ -176,6 +189,12 @@ arbitrage_execution:
     lighter:
       limit_fee_rate: 0.0               # （共用）
       market_fee_rate: 0.0              # （共用）
+    aster:
+      limit_fee_rate: 0.00005           # 0.5 bps = 0.005% Maker
+      market_fee_rate: 0.0004           # 4 bps = 0.04% Taker
+    standx:
+      limit_fee_rate: 0.0001            # 1 bps = 0.01% Maker
+      market_fee_rate: 0.0004           # 4 bps = 0.04% Taker
 
   # 交易所限流配置（共用，限制同一交易所在短时间内的下单数量/节奏，避免触发API限速）
   exchange_rate_limits:
@@ -299,4 +318,3 @@ risk_control:
     enabled: true
     check_interval: 300                  # 一致性检查间隔（秒）
     auto_fix: true                      # 自动修复不一致数据
-

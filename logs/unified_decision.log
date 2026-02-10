@@ -1,79 +1,37 @@
-2026-02-06 15:06:29.167 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
-2026-02-06 15:06:29.167 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
-2026-02-06 15:06:29.167 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.001 | max_segments=5
-      T1: 开仓≥0.0250%, 平仓<0.0100%
-      T2: 开仓≥0.0500%, 平仓<0.0250%
-      T3: 开仓≥0.0750%, 平仓<0.0500%
-      T4: 开仓≥0.1000%, 平仓<0.0750%
-      T5: 开仓≥0.1250%, 平仓<0.1000%
-2026-02-06 15:06:29.167 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.05 | max_segments=5
-      T1: 开仓≥0.0250%, 平仓<0.0100%
-      T2: 开仓≥0.0500%, 平仓<0.0250%
-      T3: 开仓≥0.0750%, 平仓<0.0500%
-      T4: 开仓≥0.1000%, 平仓<0.0750%
-      T5: 开仓≥0.1250%, 平仓<0.1000%
-2026-02-06 15:06:29.167 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
+2026-02-10 16:21:46.541 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] __init__:89 - ✅ [统一决策] 统一决策引擎初始化完成
+2026-02-10 16:21:46.541 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1031 - 📊 [统一决策] 网格阈值表（启动仅打印一次）
+2026-02-10 16:21:46.541 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - BTC-USDC-PERP | base_quantity=0.001 | max_segments=5
+      T1: 开仓≥0.0600%, 平仓<0.0060%
+      T2: 开仓≥0.2000%, 平仓<0.0600%
+      T3: 开仓≥0.3400%, 平仓<0.2000%
+      T4: 开仓≥0.4800%, 平仓<0.3400%
+      T5: 开仓≥0.6200%, 平仓<0.4800%
+2026-02-10 16:21:46.541 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - ETH-USDC-PERP | base_quantity=0.05 | max_segments=5
+      T1: 开仓≥0.0600%, 平仓<0.0060%
+      T2: 开仓≥0.2000%, 平仓<0.0600%
+      T3: 开仓≥0.3400%, 平仓<0.2000%
+      T4: 开仓≥0.4800%, 平仓<0.3400%
+      T5: 开仓≥0.6200%, 平仓<0.4800%
+2026-02-10 16:21:46.541 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_grid_thresholds_snapshot:1048 -   - __DEFAULT__ | base_quantity=1.0 | max_segments=5
       T1: 开仓≥0.0300%, 平仓<0.0120%
       T2: 开仓≥0.0600%, 平仓<0.0300%
       T3: 开仓≥0.0900%, 平仓<0.0600%
       T4: 开仓≥0.1200%, 平仓<0.0900%
       T5: 开仓≥0.1500%, 平仓<0.1200%
-2026-02-06 15:06:30.408 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [ASTER_STANDX_BTC] 开仓监测
-   当前价差: +0.0197%
-   开仓阈值: ≥0.0250% (T1)
+2026-02-10 16:21:47.592 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [ASTER_STANDX_ETH] 开仓监测
+   当前价差: +0.0399%
+   开仓阈值: ≥0.0600% (T1)
    状态: ⏳ 等待价差扩大
-   开仓视角: 买aster/BTC-USDC-PERP@64958.20 → 卖standx/BTC-USDC-PERP@64971.00
-2026-02-06 15:06:30.920 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [ASTER_STANDX_BTC] 开仓信号: 格子T1 | 目标=0.001 实际=0 待补=0 | 新增=0.001 本次=0.00050
-2026-02-06 15:06:32.040 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [ASTER_STANDX_ETH] 开仓监测
-   当前价差: +0.0105%
-   开仓阈值: ≥0.0250% (T1)
+   开仓视角: 买aster/ETH-USDC-PERP@2004.70 → 卖standx/ETH-USDC-PERP@2005.50
+2026-02-10 16:21:47.693 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [ASTER_STANDX_BTC] 开仓监测
+   当前价差: +0.0254%
+   开仓阈值: ≥0.0600% (T1)
    状态: ⏳ 等待价差扩大
-   开仓视角: 买standx/ETH-USDC-PERP@1905.00 → 卖aster/ETH-USDC-PERP@1905.20
-2026-02-06 15:06:32.443 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [ASTER_STANDX_ETH] 开仓监测
-   当前价差: +0.0053%
-   开仓阈值: ≥0.0250% (T1)
+   开仓视角: 买aster/BTC-USDC-PERP@68769.50 → 卖standx/BTC-USDC-PERP@68787.00
+2026-02-10 16:21:51.431 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [ASTER_STANDX_ETH] 开仓信号: 格子T1 | 目标=0.05 实际=0 待补=0 | 新增=0.05 本次=0.01
+2026-02-10 16:22:02.746 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [ASTER_STANDX_BTC] 开仓监测
+   当前价差: +0.0010%
+   开仓阈值: ≥0.0600% (T1)
    状态: ⏳ 等待价差扩大
-   开仓视角: 买aster/ETH-USDC-PERP@1904.50 → 卖standx/ETH-USDC-PERP@1904.60
-2026-02-06 15:06:51.312 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [ASTER_STANDX_ETH] 开仓信号: 格子T1 | 目标=0.05 实际=0 待补=0 | 新增=0.05 本次=0.02
-2026-02-06 15:07:25.421 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [ASTER_STANDX_ETH] 当前格子6超过最大5，仅补齐最大格子目标持仓=0.25，当前有效持仓=0
-2026-02-06 15:07:30.923 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [ASTER_STANDX_BTC] 开仓信号: 格子T2 | 目标=0.002 实际=0 待补=0 | 新增=0.002 本次=0.00050
-2026-02-06 15:08:04.283 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [ASTER_STANDX_ETH] 开仓信号: 格子T2 | 目标=0.10 实际=0 待补=0 | 新增=0.10 本次=0.02
-2026-02-06 15:08:09.978 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - [ASTER_STANDX_BTC] 当前格子6超过最大5，仅补齐最大格子目标持仓=0.005，当前有效持仓=0
-2026-02-06 15:08:30.992 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [ASTER_STANDX_BTC] 开仓监测
-   当前价差: +0.0164%
-   开仓阈值: ≥0.0250% (T1)
-   状态: ⏳ 等待价差扩大
-   开仓视角: 买aster/BTC-USDC-PERP@64673.40 → 卖standx/BTC-USDC-PERP@64684.00
-2026-02-06 15:08:31.295 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [ASTER_STANDX_BTC] 开仓信号: 格子T1 | 目标=0.001 实际=0 待补=0 | 新增=0.001 本次=0.00050
-2026-02-06 15:08:32.618 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [ASTER_STANDX_ETH] 开仓监测
-   当前价差: +0.0212%
-   开仓阈值: ≥0.0250% (T1)
-   状态: ⏳ 等待价差扩大
-   开仓视角: 买aster/ETH-USDC-PERP@1889.60 → 卖standx/ETH-USDC-PERP@1890.00
-2026-02-06 15:09:03.930 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [ASTER_STANDX_BTC] 开仓监测
-   当前价差: +0.0087%
-   开仓阈值: ≥0.0250% (T1)
-   状态: ⏳ 等待价差扩大
-   开仓视角: 买standx/BTC-USDC-PERP@64653.00 → 卖aster/BTC-USDC-PERP@64658.60
-2026-02-06 15:09:14.738 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [ASTER_STANDX_ETH] 开仓监测
-   当前价差: +0.0106%
-   开仓阈值: ≥0.0250% (T1)
-   状态: ⏳ 等待价差扩大
-   开仓视角: 买standx/ETH-USDC-PERP@1889.30 → 卖aster/ETH-USDC-PERP@1889.50
-2026-02-06 15:09:31.309 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [ASTER_STANDX_BTC] 开仓信号: 格子T2 | 目标=0.002 实际=0 待补=0 | 新增=0.002 本次=0.00050
-2026-02-06 15:10:31.383 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [ASTER_STANDX_BTC] 开仓信号: 格子T1 | 目标=0.001 实际=0 待补=0 | 新增=0.001 本次=0.00050
-2026-02-06 15:10:33.306 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [ASTER_STANDX_ETH] 开仓监测
-   当前价差: +0.0106%
-   开仓阈值: ≥0.0250% (T1)
-   状态: ⏳ 等待价差扩大
-   开仓视角: 买aster/ETH-USDC-PERP@1886.30 → 卖standx/ETH-USDC-PERP@1886.50
-2026-02-06 15:10:49.218 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [ASTER_STANDX_BTC] 开仓监测
-   当前价差: +0.0230%
-   开仓阈值: ≥0.0250% (T1)
-   状态: ⏳ 等待价差扩大
-   开仓视角: 买aster/BTC-USDC-PERP@64706.10 → 卖standx/BTC-USDC-PERP@64721.00
-2026-02-06 15:11:15.651 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - 🔍 [ASTER_STANDX_ETH] 开仓监测
-   当前价差: +0.0106%
-   开仓阈值: ≥0.0250% (T1)
-   状态: ⏳ 等待价差扩大
-   开仓视角: 买standx/ETH-USDC-PERP@1888.80 → 卖aster/ETH-USDC-PERP@1889.00
+   开仓视角: 买standx/BTC-USDC-PERP@68789.00 → 卖aster/BTC-USDC-PERP@68789.70
+2026-02-10 16:23:10.869 [INFO    ] [core.services.arbitrage_monitor_v2.decision.unified_decision_engine] _log_info_throttle:1012 - ✅ [ASTER_STANDX_ETH] 开仓信号: 格子T1 | 目标=0.05 实际=0 待补=0 | 新增=0.05 本次=0.01

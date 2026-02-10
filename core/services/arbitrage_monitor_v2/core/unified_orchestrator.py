@@ -265,6 +265,11 @@ class UnifiedOrchestrator:
         # 🔥 状态汇总日志控制
         self.status_summary_interval: float = 60.0  # 每60秒输出一次状态汇总
         self._last_status_summary_time: float = 0.0
+        self._signal_reject_throttle: Dict[str, float] = {}
+        self._ws_self_heal_enabled: bool = True
+        self._ws_self_heal_threshold_seconds: float = 30.0
+        self._ws_self_heal_cooldown_seconds: float = 300.0
+        self._last_ws_self_heal_ts: float = 0.0
         self._liquidity_failure_logger = LiquidityFailureLogger(logger)
         self._throttled_logger = ThrottledLogger(logger)
         self._persistence_log_records: Dict[str, Tuple[float, float]] = {}
@@ -893,6 +898,9 @@ class UnifiedOrchestrator:
                     # 🔥 处理多交易所套利组合
                     if self.multi_exchange_pairs:
                         await self._process_trading_pairs()
+
+                    # 🔥 若出现单腿长时间缺失，执行受控重连自愈（仅连接层）
+                    await self._maybe_self_heal_exchange_stream()
                     
                     # 🔥 周期性输出状态汇总
                     self._log_status_summary()
@@ -1189,6 +1197,135 @@ class UnifiedOrchestrator:
             throttle_seconds=throttle_seconds,
         )
 
+    def _log_signal_reject(
+        self,
+        *,
+        action: str,
+        symbol: str,
+        code: str,
+        detail: Optional[str] = None,
+        level: str = "warning",
+        throttle_seconds: float = 30.0,
+    ) -> None:
+        """
+        输出结构化信号拒绝原因码日志，便于定位“为什么没有动作”。
+        """
+        now = time.time()
+        key = f"{action}:{symbol}:{code}"
+        last = self._signal_reject_throttle.get(key, 0.0)
+        if now - last < throttle_seconds:
+            return
+        self._signal_reject_throttle[key] = now
+
+        message = (
+            f"🚫 [信号拒绝] action={action} symbol={symbol} code={code}"
+            + (f" detail={detail}" if detail else "")
+        )
+        log_fn = getattr(logger, level, logger.info)
+        log_fn(message)
+
+    async def _maybe_self_heal_exchange_stream(self) -> None:
+        """
+        当检测到“单腿持续缺失且另一腿正常”时，按缺失腿动态选择交易所执行受控重连。
+        仅做连接层自愈，不改变交易策略和下单语义。
+        """
+        if not self._ws_self_heal_enabled:
+            return
+        now = time.time()
+        if now - self._last_ws_self_heal_ts < self._ws_self_heal_cooldown_seconds:
+            return
+
+        diagnostics_getter = getattr(self.spread_pipeline, "get_missing_orderbook_diagnostics", None)
+        if not callable(diagnostics_getter):
+            return
+        diagnostics = diagnostics_getter()
+        if not diagnostics:
+            return
+
+        candidates: List[Tuple[float, str, Dict[str, Any], Dict[str, Any], Dict[str, Any]]] = []
+        for symbol_key, item in diagnostics.items():
+            leg_a = item.get("leg_a") or {}
+            leg_b = item.get("leg_b") or {}
+            missing_duration = float(item.get("missing_duration_seconds") or 0.0)
+
+            if missing_duration < self._ws_self_heal_threshold_seconds:
+                continue
+
+            leg_a_missing = not bool(leg_a.get("has_orderbook"))
+            leg_b_missing = not bool(leg_b.get("has_orderbook"))
+            if leg_a_missing and not leg_b_missing:
+                target_leg, other_leg = leg_a, leg_b
+            elif leg_b_missing and not leg_a_missing:
+                target_leg, other_leg = leg_b, leg_a
+            else:
+                continue
+            if not bool(other_leg.get("has_orderbook")):
+                continue
+
+            candidates.append((missing_duration, symbol_key, item, target_leg, other_leg))
+
+        if not candidates:
+            return
+
+        candidates.sort(key=lambda x: x[0], reverse=True)
+        missing_duration, symbol_key, item, target_leg, other_leg = candidates[0]
+        self._last_ws_self_heal_ts = now
+        target_exchange = str(target_leg.get("exchange") or "").lower()
+        if not target_exchange:
+            return
+
+        adapter = self.exchange_adapters.get(target_exchange)
+        ws_diag: Dict[str, Any] = {}
+        if adapter and hasattr(adapter, "websocket") and getattr(adapter, "websocket"):
+            try:
+                ws_diag = adapter.websocket.get_diagnostics()
+            except Exception:
+                ws_diag = {}
+
+        logger.warning(
+            "🔁 [流自愈] 触发=%s pair=%s duration=%.1fs target_state=%s target_age=%s other_state=%s other_age=%s "
+            "ws_public_msgs=%s ws_order_msgs=%s ws_last_depth=%s",
+            target_exchange,
+            symbol_key,
+            missing_duration,
+            target_leg.get("state"),
+            (
+                f"{float(target_leg.get('age_seconds')):.1f}s"
+                if target_leg.get("age_seconds") is not None
+                else "-"
+            ),
+            other_leg.get("state"),
+            (
+                f"{float(other_leg.get('age_seconds')):.1f}s"
+                if other_leg.get("age_seconds") is not None
+                else "-"
+            ),
+            ws_diag.get("public_msg_count"),
+            ws_diag.get("order_msg_count"),
+            ws_diag.get("last_depth_ts_by_symbol"),
+        )
+
+        subscribe_symbols = self.bootstrapper._collect_subscription_symbols()
+        ok = await self.bootstrapper.reconnect_exchange(
+            exchange_name=target_exchange,
+            symbols=subscribe_symbols,
+        )
+        if ok:
+            logger.warning(
+                "✅ [流自愈] 完成=%s pair=%s duration=%.1fs symbols=%d",
+                target_exchange,
+                symbol_key,
+                missing_duration,
+                len(subscribe_symbols),
+            )
+        else:
+            logger.error(
+                "❌ [流自愈] 失败=%s pair=%s duration=%.1fs",
+                target_exchange,
+                symbol_key,
+                missing_duration,
+            )
+
     def _should_log_persistence_confirmation(
         self,
         symbol: str,
@@ -1369,8 +1506,18 @@ class UnifiedOrchestrator:
                     message=f"⏸️ [V2开仓] {symbol}: 交易所在 reduce-only 模式，仅允许平仓，跳过开仓。",
                     throttle_seconds=60.0,
                 )
+                self._log_signal_reject(
+                    action="open",
+                    symbol=symbol,
+                    code="OPEN_BLOCK_REDUCE_ONLY",
+                )
                 return
             if self._should_skip_due_to_dual_limit_backoff(symbol):
+                self._log_signal_reject(
+                    action="open",
+                    symbol=symbol,
+                    code="OPEN_BLOCK_DUAL_LIMIT_BACKOFF",
+                )
                 return
             symbol_config = self.config_manager.get_config(symbol)
             slippage_pct = self._resolve_slippage_pct(symbol, symbol_config)
@@ -1386,6 +1533,11 @@ class UnifiedOrchestrator:
                     level="warning",
                     throttle_seconds=60.0,
                 )
+                self._log_signal_reject(
+                    action="open",
+                    symbol=symbol,
+                    code="OPEN_BLOCK_MARKET_CLOSED",
+                )
                 return
             # 🔥 V2接口：返回(是否开仓, 开仓数量)
             should_open, open_quantity = await self.decision_engine.should_open(
@@ -1395,6 +1547,12 @@ class UnifiedOrchestrator:
             )
             
             if not should_open or open_quantity <= Decimal('0'):
+                self._log_signal_reject(
+                    action="open",
+                    symbol=symbol,
+                    code="OPEN_BLOCK_DECISION_FALSE",
+                    detail=f"should_open={should_open},open_quantity={open_quantity}",
+                )
                 # 🔥 检查是否检测到反向开仓（实为平仓信号）
                 if getattr(self.decision_engine, '_reverse_open_detected', False):
                     self.decision_engine._reverse_open_detected = False  # 重置标记
@@ -1408,6 +1566,11 @@ class UnifiedOrchestrator:
                 return
 
             if not self._passes_price_stability(symbol, spread_data, action="开仓"):
+                self._log_signal_reject(
+                    action="open",
+                    symbol=symbol,
+                    code="OPEN_BLOCK_PRICE_UNSTABLE",
+                )
                 return
             
             local_spread_threshold = getattr(
@@ -1435,6 +1598,12 @@ class UnifiedOrchestrator:
                     spread_data=spread_data,
                     threshold_pct=local_spread_threshold_dec,
                 ):
+                    self._log_signal_reject(
+                        action="open",
+                        symbol=symbol,
+                        code="OPEN_BLOCK_LOCAL_SPREAD",
+                        detail=f"threshold={local_spread_threshold_dec}",
+                    )
                     return
             
             # 🔢 当前网格层级（需在日志前计算）
@@ -1448,6 +1617,12 @@ class UnifiedOrchestrator:
                         symbol,
                         reason,
                         state.grid_level if state else grid_level,
+                    )
+                    self._log_signal_reject(
+                        action="open",
+                        symbol=symbol,
+                        code="OPEN_BLOCK_MANUAL_STATE",
+                        detail=f"reason={reason}",
                     )
                     return
             
@@ -1585,6 +1760,11 @@ class UnifiedOrchestrator:
                         base_message=f"⚠️ [V2开仓] {symbol}: 对手盘流动性不足，跳过本次拆单",
                         throttle_seconds=5.0,
                     )
+                    self._log_signal_reject(
+                        action="open",
+                        symbol=symbol,
+                        code="OPEN_BLOCK_LIQUIDITY",
+                    )
                     return
                 self._clear_liquidity_failure_summary("V2开仓", symbol)
             
@@ -1604,6 +1784,13 @@ class UnifiedOrchestrator:
                     symbol,
                     spread_data.exchange_buy,
                     spread_data.exchange_sell
+                )
+                self._log_signal_reject(
+                    action="open",
+                    symbol=symbol,
+                    code="OPEN_BLOCK_LOCK_HELD",
+                    detail=f"pair={open_key}",
+                    throttle_seconds=10.0,
                 )
                 return
             execution_task = asyncio.create_task(
@@ -1846,6 +2033,12 @@ class UnifiedOrchestrator:
                         message=f"⏸️ [V2平仓] {symbol}: 当前处于等待状态，原因={reason}，保持跳过 (T{grid_level_display})",
                         throttle_seconds=60.0,
                     )
+                    self._log_signal_reject(
+                        action="close",
+                        symbol=symbol,
+                        code="CLOSE_BLOCK_MANUAL_STATE",
+                        detail=f"reason={reason}",
+                    )
                     return
             
             if self.reduce_only_guard.is_pair_closing_blocked(symbol):
@@ -1854,12 +2047,22 @@ class UnifiedOrchestrator:
                     message=f"⏸️ [V2平仓] {symbol}: 交易所仍处于 reduce-only 限制，等待恢复后再尝试平仓。",
                     throttle_seconds=60.0,
                 )
+                self._log_signal_reject(
+                    action="close",
+                    symbol=symbol,
+                    code="CLOSE_BLOCK_REDUCE_ONLY_CLOSING",
+                )
                 return
             if self.reduce_only_guard.is_pair_blocked(symbol):
                 self._log_with_throttle(
                     key=f"reduce_only_close:{symbol}",
                     message=f"⏸️ [V2平仓] {symbol}: 交易所在 reduce-only 模式，暂停开平仓，等待整点探针恢复。",
                     throttle_seconds=60.0,
+                )
+                self._log_signal_reject(
+                    action="close",
+                    symbol=symbol,
+                    code="CLOSE_BLOCK_REDUCE_ONLY_GLOBAL",
                 )
                 return
             symbol_config = self.config_manager.get_config(symbol)
@@ -1873,9 +2076,20 @@ class UnifiedOrchestrator:
             )
             
             if not should_close or close_quantity <= Decimal('0'):
+                self._log_signal_reject(
+                    action="close",
+                    symbol=symbol,
+                    code="CLOSE_BLOCK_DECISION_FALSE",
+                    detail=f"should_close={should_close},close_quantity={close_quantity},reason={reason or '-'}",
+                )
                 return
 
             if not self._passes_price_stability(symbol, spread_data, action="平仓"):
+                self._log_signal_reject(
+                    action="close",
+                    symbol=symbol,
+                    code="CLOSE_BLOCK_PRICE_UNSTABLE",
+                )
                 return
 
             local_spread_threshold = getattr(
@@ -1903,12 +2117,23 @@ class UnifiedOrchestrator:
                     spread_data=spread_data,
                     threshold_pct=local_spread_threshold_dec,
                 ):
+                    self._log_signal_reject(
+                        action="close",
+                        symbol=symbol,
+                        code="CLOSE_BLOCK_LOCAL_SPREAD",
+                        detail=f"threshold={local_spread_threshold_dec}",
+                    )
                     return
             
             # 🔥 获取持仓方向（用于正确计算平仓价差）
             position = self.decision_engine.get_position(symbol)
             if not position:
                 logger.warning(f"⚠️  [V2平仓] {symbol}: 无法获取持仓信息，取消平仓")
+                self._log_signal_reject(
+                    action="close",
+                    symbol=symbol,
+                    code="CLOSE_BLOCK_NO_POSITION",
+                )
                 return
             
             # 平仓时需要反向交易：开仓时买入的交易所，平仓时卖出
@@ -2003,11 +2228,21 @@ class UnifiedOrchestrator:
                             "⚠️ [V2平仓] %s: 记忆方向缺少盘口数据，无法修正平仓视角，暂停本次平仓。",
                             symbol,
                         )
+                        self._log_signal_reject(
+                            action="close",
+                            symbol=symbol,
+                            code="CLOSE_BLOCK_DIRECTION_MISMATCH_NO_MEMORY",
+                        )
                         return
                 else:
                     logger.warning(
                         "⚠️ [V2平仓] %s: 平仓视角与持仓方向不符且无法回溯记忆盘口，暂停本次平仓。",
                         symbol,
+                    )
+                    self._log_signal_reject(
+                        action="close",
+                        symbol=symbol,
+                        code="CLOSE_BLOCK_DIRECTION_MISMATCH",
                     )
                     return
             if is_reverse_view and (self.debug.is_debug_enabled() or close_quantity >= position.total_quantity * Decimal('0.5')):
@@ -2070,6 +2305,11 @@ class UnifiedOrchestrator:
                         base_message=f"⚠️ [V2平仓] {symbol}: 对手盘流动性不足，等待下次机会",
                         throttle_seconds=5.0,
                     )
+                    self._log_signal_reject(
+                        action="close",
+                        symbol=symbol,
+                        code="CLOSE_BLOCK_LIQUIDITY",
+                    )
                     return
                 self._clear_liquidity_failure_summary("V2平仓", symbol)
             
@@ -2083,6 +2323,13 @@ class UnifiedOrchestrator:
             close_key = symbol.upper()
             if not await self._try_register_close_symbol(close_key):
                 logger.debug("🔁 [V2平仓] %s 已有执行任务，跳过重复触发", symbol)
+                self._log_signal_reject(
+                    action="close",
+                    symbol=symbol,
+                    code="CLOSE_BLOCK_LOCK_HELD",
+                    detail=f"key={close_key}",
+                    throttle_seconds=10.0,
+                )
                 return
             # spread_data 是从 build_closing_spread_from_orderbooks() 返回的
             execution_task = asyncio.create_task(
@@ -2808,9 +3055,45 @@ class UnifiedOrchestrator:
         
         if blocked_pairs:
             status_parts.append(f"受限: {', '.join(blocked_pairs)}")
+
+        missing_diag_getter = getattr(self.spread_pipeline, "get_missing_orderbook_diagnostics", None)
+        if callable(missing_diag_getter):
+            try:
+                missing_diag = missing_diag_getter()
+            except Exception:
+                missing_diag = {}
+            if missing_diag:
+                top_pair, top_item = max(
+                    missing_diag.items(),
+                    key=lambda kv: float((kv[1] or {}).get("missing_duration_seconds") or 0.0),
+                )
+                top_missing = ",".join(top_item.get("missing_legs") or []) or "-"
+                top_duration = float(top_item.get("missing_duration_seconds") or 0.0)
+                status_parts.append(
+                    f"缺失: {len(missing_diag)}对(最长={top_pair}:{top_missing}:{top_duration:.1f}s)"
+                )
+
+        standx_adapter = self.exchange_adapters.get("standx")
+        if standx_adapter and hasattr(standx_adapter, "websocket"):
+            try:
+                ws_diag = standx_adapter.websocket.get_diagnostics()
+            except Exception:
+                ws_diag = {}
+            if ws_diag:
+                depth_ages = ws_diag.get("depth_age_seconds") or {}
+                if depth_ages:
+                    depth_age_str = ",".join(
+                        f"{symbol}={age:.1f}s"
+                        for symbol, age in sorted(depth_ages.items())
+                    )
+                else:
+                    depth_age_str = "none"
+                status_parts.append(
+                    f"StandX: pub={ws_diag.get('public_msg_count')} order={ws_diag.get('order_msg_count')} depth_age={depth_age_str}"
+                )
         
         # 输出汇总日志
-        logger.info("📊 [状态汇总] %s", " | ".join(status_parts))
+        logger.warning("📊 [状态汇总] %s", " | ".join(status_parts))
     
     def _log_decision_heartbeat(self) -> None:
         """按照固定间隔输出分段决策摘要，避免长时间无日志"""
@@ -2968,4 +3251,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-

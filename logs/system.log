@@ -1,15 +1,15 @@
-2026-02-06 15:06:27,983 - system - INFO - info:102 - 🚀 组件启动: UnifiedLoggingSystem v3.0 | component=UnifiedLoggingSystem | version=v3.0
-2026-02-06 15:06:27,989 - system - INFO - info:102 - 事件处理器初始化完成: Default
-2026-02-06 15:06:29,163 - system - INFO - info:102 - 注册交易所适配器: hyperliquid (Hyperliquid)
-2026-02-06 15:06:29,163 - system - INFO - info:102 - 注册交易所适配器: backpack (Backpack)
-2026-02-06 15:06:29,163 - system - INFO - info:102 - 注册交易所适配器: binance (Binance Futures)
-2026-02-06 15:06:29,163 - system - INFO - info:102 - 注册交易所适配器: edgex (EdgeX)
-2026-02-06 15:06:29,163 - system - INFO - info:102 - 注册交易所适配器: lighter (Lighter)
-2026-02-06 15:06:29,163 - system - INFO - info:102 - 注册交易所适配器: paradex (Paradex)
-2026-02-06 15:06:29,163 - system - INFO - info:102 - 注册交易所适配器: standx (StandX)
-2026-02-06 15:06:29,163 - system - INFO - info:102 - 注册交易所适配器: aster (Aster Finance)
-2026-02-06 15:06:29,163 - system - INFO - info:102 - 注册交易所适配器: variational (Variational Omni)
-2026-02-06 15:06:29,163 - system - INFO - info:102 - 注册交易所适配器: grvt (GRVT)
-2026-02-06 15:06:29,163 - system - INFO - info:102 - 内置交易所适配器注册完成
-2026-02-06 15:06:29,164 - system - INFO - info:102 - 创建交易所适配器实例: aster
-2026-02-06 15:06:29,166 - system - INFO - info:102 - 创建交易所适配器实例: standx
+2026-02-10 16:21:45,355 - system - INFO - info:102 - 🚀 组件启动: UnifiedLoggingSystem v3.0 | component=UnifiedLoggingSystem | version=v3.0
+2026-02-10 16:21:45,363 - system - INFO - info:102 - 事件处理器初始化完成: Default
+2026-02-10 16:21:46,537 - system - INFO - info:102 - 注册交易所适配器: hyperliquid (Hyperliquid)
+2026-02-10 16:21:46,537 - system - INFO - info:102 - 注册交易所适配器: backpack (Backpack)
+2026-02-10 16:21:46,537 - system - INFO - info:102 - 注册交易所适配器: binance (Binance Futures)
+2026-02-10 16:21:46,537 - system - INFO - info:102 - 注册交易所适配器: edgex (EdgeX)
+2026-02-10 16:21:46,537 - system - INFO - info:102 - 注册交易所适配器: lighter (Lighter)
+2026-02-10 16:21:46,537 - system - INFO - info:102 - 注册交易所适配器: paradex (Paradex)
+2026-02-10 16:21:46,537 - system - INFO - info:102 - 注册交易所适配器: standx (StandX)
+2026-02-10 16:21:46,537 - system - INFO - info:102 - 注册交易所适配器: aster (Aster Finance)
+2026-02-10 16:21:46,537 - system - INFO - info:102 - 注册交易所适配器: variational (Variational Omni)
+2026-02-10 16:21:46,538 - system - INFO - info:102 - 注册交易所适配器: grvt (GRVT)
+2026-02-10 16:21:46,538 - system - INFO - info:102 - 内置交易所适配器注册完成
+2026-02-10 16:21:46,539 - system - INFO - info:102 - 创建交易所适配器实例: aster
+2026-02-10 16:21:46,540 - system - INFO - info:102 - 创建交易所适配器实例: standx

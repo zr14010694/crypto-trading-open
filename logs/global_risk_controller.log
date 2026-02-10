@@ -1,3 +1,2 @@
-2026-02-06 15:06:29.174 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:81 - ✅ [风险控制] 全局风险控制器初始化完成
-2026-02-06 15:06:29.186 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:106 - ✅ [风险控制] 全局风险控制器已启动
-2026-02-06 15:11:25.495 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] stop:120 - 🛑 [风险控制] 全局风险控制器已停止
+2026-02-10 16:21:46.549 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] __init__:81 - ✅ [风险控制] 全局风险控制器初始化完成
+2026-02-10 16:21:46.562 [INFO    ] [core.services.arbitrage_monitor_v2.risk_control.global_risk_controller] start:106 - ✅ [风险控制] 全局风险控制器已启动

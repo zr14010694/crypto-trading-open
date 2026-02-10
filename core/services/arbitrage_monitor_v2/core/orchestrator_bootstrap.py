@@ -254,29 +254,125 @@ class OrchestratorBootstrap:
         orc = self.orchestrator
         data_receiver = orc.data_receiver
         try:
-            subscription_symbols = set(orc.monitor_config.symbols)
-
-            if orc.multi_leg_pairs:
-                for pair in orc.multi_leg_pairs:
-                    subscription_symbols.add(pair.leg_primary.normalized_symbol())
-                    subscription_symbols.add(pair.leg_secondary.normalized_symbol())
-                logger.info(
-                    f"🔧 [统一调度] 多腿套利额外订阅: {[pair.pair_id for pair in orc.multi_leg_pairs]}"
-                )
-
-            if orc.multi_exchange_pairs:
-                for pair in orc.multi_exchange_pairs:
-                    subscription_symbols.add(pair.normalized_symbol())
-                logger.info(
-                    "🔧 [统一调度] 多交易所套利额外订阅: %s",
-                    [pair.trading_pair_id for pair in orc.multi_exchange_pairs],
-                )
-
-            subscription_symbols = list(subscription_symbols)
+            subscription_symbols = self._collect_subscription_symbols()
             await data_receiver.subscribe_all(subscription_symbols)
             logger.info(f"✅ [统一调度] 已订阅 {len(subscription_symbols)} 个交易对")
         except Exception as exc:
             logger.error(f"❌ [统一调度] 订阅市场数据失败: {exc}", exc_info=True)
+
+    def _collect_subscription_symbols(self) -> List[str]:
+        orc = self.orchestrator
+        subscription_symbols = set(orc.monitor_config.symbols)
+
+        if orc.multi_leg_pairs:
+            for pair in orc.multi_leg_pairs:
+                subscription_symbols.add(pair.leg_primary.normalized_symbol())
+                subscription_symbols.add(pair.leg_secondary.normalized_symbol())
+            logger.info(
+                "🔧 [统一调度] 多腿套利额外订阅: %s",
+                [pair.pair_id for pair in orc.multi_leg_pairs],
+            )
+
+        if orc.multi_exchange_pairs:
+            for pair in orc.multi_exchange_pairs:
+                subscription_symbols.add(pair.normalized_symbol())
+            logger.info(
+                "🔧 [统一调度] 多交易所套利额外订阅: %s",
+                [pair.trading_pair_id for pair in orc.multi_exchange_pairs],
+            )
+
+        return list(subscription_symbols)
+
+    async def _subscribe_single_exchange_market_data(
+        self,
+        exchange_name: str,
+        adapter: ExchangeInterface,
+        symbols: List[str],
+    ) -> None:
+        """
+        仅为指定交易所重新订阅行情，避免 subscribe_all 引发全交易所重复订阅。
+        当前重连自愈主要用于 standx，故优先走通用订阅分支。
+        """
+        data_receiver = self.orchestrator.data_receiver
+        for standard_symbol in symbols:
+            try:
+                exchange_symbol = data_receiver.symbol_converter.convert_to_exchange(
+                    standard_symbol, exchange_name
+                )
+                await adapter.subscribe_orderbook(
+                    symbol=exchange_symbol,
+                    callback=data_receiver._create_orderbook_callback(exchange_name),
+                )
+            except Exception:
+                continue
+
+        for standard_symbol in symbols:
+            try:
+                exchange_symbol = data_receiver.symbol_converter.convert_to_exchange(
+                    standard_symbol, exchange_name
+                )
+                await adapter.subscribe_ticker(
+                    symbol=exchange_symbol,
+                    callback=data_receiver._create_ticker_callback(exchange_name),
+                )
+            except Exception:
+                continue
+
+    async def reconnect_exchange(
+        self,
+        exchange_name: str,
+        *,
+        symbols: Optional[List[str]] = None,
+    ) -> bool:
+        """
+        对单个交易所执行受控重连+重订阅。
+        返回 True 表示重连流程已完成，False 表示失败。
+        """
+        orc = self.orchestrator
+        adapter = orc.exchange_adapters.get(exchange_name)
+        if not adapter:
+            logger.warning("⚠️ [统一调度] 重连失败: 未找到交易所适配器 %s", exchange_name)
+            return False
+
+        try:
+            logger.warning("🔁 [统一调度] 开始重连交易所: %s", exchange_name)
+            await adapter.disconnect()
+        except Exception as exc:
+            logger.warning("⚠️ [统一调度] %s 断开失败，继续重连: %s", exchange_name, exc)
+
+        try:
+            if hasattr(adapter, "connect"):
+                await adapter.connect()
+            else:
+                await adapter.start()
+            orc.data_receiver.register_adapter(exchange_name, adapter)
+        except Exception as exc:
+            logger.error("❌ [统一调度] %s 重连失败: %s", exchange_name, exc, exc_info=True)
+            return False
+
+        try:
+            if hasattr(adapter, "reset_market_callbacks"):
+                adapter.reset_market_callbacks()
+            subscribe_symbols = symbols if symbols is not None else self._collect_subscription_symbols()
+            await self._subscribe_single_exchange_market_data(
+                exchange_name=exchange_name,
+                adapter=adapter,
+                symbols=subscribe_symbols,
+            )
+            logger.warning(
+                "✅ [统一调度] %s 重连并重订阅完成，symbols=%d",
+                exchange_name,
+                len(subscribe_symbols),
+            )
+            return True
+        except Exception as exc:
+            logger.error(
+                "❌ [统一调度] %s 重连后重订阅失败: %s",
+                exchange_name,
+                exc,
+                exc_info=True,
+            )
+            return False
 
     async def disconnect_all_exchanges(self) -> None:
         orc = self.orchestrator

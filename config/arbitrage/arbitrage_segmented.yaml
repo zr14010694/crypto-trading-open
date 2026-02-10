@@ -24,12 +24,14 @@ decision:
   deduct_fees: true                 # 是否扣除手续费后再判断价差（true=扣除手续费，false=使用原始价差）
   exchange_fee_config:              # 交易所手续费配置（可覆盖默认值）
     default:
-      limit_fee_rate: 0             # Maker 手续费率（百分比形式，0=0%）
-      market_fee_rate: 0            # Taker 手续费率（百分比形式，0=0%）
-    # 可针对特定交易所覆盖：
-    # lighter:
-    #   limit_fee_rate: 0.0001      # 0.01%
-    #   market_fee_rate: 0.0003     # 0.03%
+      limit_fee_rate: 0.0001        # 0.01% Maker 默认
+      market_fee_rate: 0.0004       # 0.04% Taker 默认
+    aster:
+      limit_fee_rate: 0.00005       # 0.5 bps = 0.005% Maker
+      market_fee_rate: 0.0004       # 4 bps = 0.04% Taker
+    standx:
+      limit_fee_rate: 0.0001        # 1 bps = 0.01% Maker
+      market_fee_rate: 0.0004       # 4 bps = 0.04% Taker
 
 # ============================================================================
 # 4. 全局风险控制配置
@@ -67,7 +69,7 @@ default_config:
     strict_persistence_check: true  # 严格持续性检查（true=每秒所有数据都满足，false=每秒至少1条）
     # --- 盘口深度校验 ---
     require_orderbook_liquidity: true  # 是否启用对手盘深度校验（true=检查深度，false=不检查）
-    min_orderbook_quantity: 0.5     # 对手盘最小可用数量，深度必须 ≥ 此值才允许下单
+    min_orderbook_quantity: 0.001   # 对手盘最小可用数量 (DEX 流动性较低，按实际交易量的2倍设定)
     slippage_tolerance: 0.001      # 市价单滑点（0.0005=0.05%），优先级最高，可覆盖全局默认值
     # --- 价格稳定性检查 ---
     price_stability_window_seconds: 1    # 价格稳定性窗口（秒），检查 N 秒内对手盘价格波动
@@ -195,15 +197,16 @@ symbol_configs:
   "BTC-USDC-PERP":
     enabled: true                   # 🔧 开关：true=启用，false=禁用
     grid_config:
-      initial_spread_threshold: 0.025    # 第 1 格触发点：0.02%
-      grid_step: 0.025                    # 网格间隔：0.03%
+      initial_spread_threshold: 0.06     # 第 1 格触发点：0.06%（6 bps）
+      grid_step: 0.14                    # 网格间隔：0.14%（T2=0.20%）
+      t0_close_ratio: 0.1                # T0 = T1 * 0.1（T1 平仓阈值=0.006%）
       max_segments: 5                    # 最大格子数：5 格
-      limit_price_offset_abs: 10         # 🔧 交易对级绝对偏移：只赋值给本 symbol 的请求（如 lighter 作为第二腿需要更多吃单力度），且会被 use_tick_precision=true 的交易所自动忽略；与 unified 配置不同，这里是按代币粒度区分的
+      limit_price_offset_abs: 0          # 🔧 被动挂单模式：设0让 use_tick_precision 生效
       max_local_orderbook_spread_pct: 0.01  # 每个参与交易对的bid-ask点差 0.01 是0.01%
-          # --- 盘口深度校验 ---
-    require_orderbook_liquidity: true  # 是否启用对手盘深度校验（true=检查深度，false=不检查）
-    min_orderbook_quantity: 0.005     # 对手盘最小可用数量，深度必须 ≥ 此值才允许下单
-    slippage_tolerance: 0.001      # 市价单最大滑点（0.001=0.1%），超过此滑点拒绝下单
+      # --- 盘口深度校验 ---
+      require_orderbook_liquidity: true  # 是否启用对手盘深度校验（true=检查深度，false=不检查）
+      min_orderbook_quantity: 0.001     # 对手盘最小可用数量，深度必须 ≥ 此值才允许下单
+      slippage_tolerance: 0.0002      # 市价单最大滑点（0.001=0.1%），超过此滑点拒绝下单
     quantity_config:
       base_quantity: 0.001              # 每格数量：0.001 BTC
       quantity_mode: "fixed"             # 固定数量模式
@@ -219,19 +222,20 @@ symbol_configs:
   "ETH-USDC-PERP":
     enabled: true                  # 🔧 开关：true=启用，false=禁用
     grid_config:
-      initial_spread_threshold: 0.025     # 第 1 格触发点：0.05%
-      grid_step: 0.025                    # 网格间隔：0.03%
+      initial_spread_threshold: 0.06      # 第 1 格触发点：0.06%（6 bps）
+      grid_step: 0.14                    # 网格间隔：0.14%（T2=0.20%）
+      t0_close_ratio: 0.1                # T0 = T1 * 0.1（T1 平仓阈值=0.006%）
       max_segments: 5                    # 最大格子数：5 格
-      limit_price_offset_abs: 0.4       # 🔧 交易对级绝对偏移：只赋值给本 symbol 的请求（如 lighter 作为第二腿需要更多吃单力度），且会被 use_tick_precision=true 的交易所自动忽略；与 unified 配置不同，这里是按代币粒度区分的
+      limit_price_offset_abs: 0          # 🔧 被动挂单模式：设0让 use_tick_precision 生效
       max_local_orderbook_spread_pct: 0.01  # 每个参与交易对的bid-ask点差 0.01 是0.01%
-    require_orderbook_liquidity: true  # 是否启用对手盘深度校验（true=检查深度，false=不检查）
-    min_orderbook_quantity: 0.05     # 对手盘最小可用数量，深度必须 ≥ 此值才允许下单
-    slippage_tolerance: 0.001       # 市价单最大滑点（0.001=0.1%），超过此滑点拒绝下单
+      require_orderbook_liquidity: true  # 是否启用对手盘深度校验（true=检查深度，false=不检查）
+      min_orderbook_quantity: 0.01     # 对手盘最小可用数量，深度必须 ≥ 此值才允许下单
+      slippage_tolerance: 0.0002       # 市价单最大滑点（0.001=0.1%），超过此滑点拒绝下单
     quantity_config:
       base_quantity: 0.05                 # 每格数量：0.05 ETH
       quantity_mode: "fixed"             # 按金额模式
       quantity_precision: 2              # 数量精度：2 位小数
-      split_order_size: 0.02             # 单笔订单：0.02（拆成 2 笔）
+      split_order_size: 0.01             # 单笔订单：0.01（拆成 5 笔）
       target_value_usdc: 150.0           # 按金额模式目标：150 USDC
       min_exchange_order_qty:
         default: 0.001                    # 这里按需设置各交易所最小下单量

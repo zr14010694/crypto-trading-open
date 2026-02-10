@@ -9,7 +9,7 @@ import json
 import time
 import ssl
 from datetime import datetime
-from decimal import Decimal
+from decimal import Decimal, ROUND_DOWN
 from typing import Any, Dict, List, Optional
 
 import aiohttp
@@ -203,16 +203,27 @@ class StandXRest(StandXBase):
         leverage: Optional[int] = None,
         cl_ord_id: Optional[str] = None,
     ) -> Dict[str, Any]:
+        qty_value = qty
+        price_value = price
+        precision = self._precision_cache.get(symbol)
+        if precision:
+            price_decimals, qty_decimals = precision
+            qty_step = Decimal("1").scaleb(-qty_decimals)
+            qty_value = qty.quantize(qty_step, rounding=ROUND_DOWN)
+            if price is not None:
+                price_step = Decimal("1").scaleb(-price_decimals)
+                price_value = price.quantize(price_step, rounding=ROUND_DOWN)
+
         payload: Dict[str, Any] = {
             "symbol": symbol,
             "side": side.value,
             "order_type": order_type.value,
-            "qty": str(qty),
+            "qty": str(qty_value),
             "time_in_force": time_in_force,
             "reduce_only": reduce_only,
         }
-        if price is not None:
-            payload["price"] = str(price)
+        if price_value is not None:
+            payload["price"] = str(price_value)
         if cl_ord_id:
             payload["cl_ord_id"] = cl_ord_id
         if margin_mode:
@@ -230,6 +241,10 @@ class StandXRest(StandXBase):
         return payload
 
     def _parse_order(self, data: Dict[str, Any]) -> OrderData:
+        order_id = data.get("id")
+        if order_id is None:
+            error_msg = data.get("error") or data.get("message") or data.get("msg", "unknown")
+            raise Exception(f"StandX API error: {error_msg}, raw={data}")
         order_type = self._parse_order_type(data.get("order_type"))
         side = self._parse_order_side(data.get("side"))
         status = self._parse_order_status(data.get("status"))
@@ -349,14 +364,18 @@ class StandXRest(StandXBase):
         session = await self._get_session()
         url = f"{self.base_url}/api/new_order"
         headers = self._signed_headers(payload, session_id=self.session_id)
-        async with session.post(url, json=payload, headers=headers) as resp:
+        headers["Content-Type"] = "application/json"
+        body = json.dumps(payload, separators=(",", ":"), sort_keys=True)
+        async with session.post(url, data=body, headers=headers) as resp:
             return await resp.json()
 
     async def cancel_order(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         session = await self._get_session()
         url = f"{self.base_url}/api/cancel_order"
         headers = self._signed_headers(payload, session_id=self.session_id)
-        async with session.post(url, json=payload, headers=headers) as resp:
+        headers["Content-Type"] = "application/json"
+        body = json.dumps(payload, separators=(",", ":"), sort_keys=True)
+        async with session.post(url, data=body, headers=headers) as resp:
             return await resp.json()
 
     async def query_order(self, order_id: int) -> Dict[str, Any]:

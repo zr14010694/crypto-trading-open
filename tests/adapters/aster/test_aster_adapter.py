@@ -108,6 +108,74 @@ async def test_create_order():
 
 
 @pytest.mark.asyncio
+async def test_create_order_uses_runtime_precision_cache():
+    config = make_config()
+    adapter = AsterAdapter(config)
+    # (price_precision, quantity_precision)
+    adapter.rest._precision_cache["BTCUSDT"] = (2, 4)
+
+    mock_response = {
+        "orderId": 100001,
+        "clientOrderId": "test_prec",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "type": "LIMIT",
+        "origQty": "0.0005",
+        "executedQty": "0",
+        "price": "97000.00",
+        "avgPrice": "0",
+        "status": "NEW",
+        "time": 1700000000000,
+        "updateTime": 1700000000000,
+    }
+    adapter.rest.new_order = AsyncMock(return_value=mock_response)
+
+    await adapter.create_order(
+        symbol="BTCUSDT",
+        side=OrderSide.BUY,
+        order_type=OrderType.LIMIT,
+        amount=Decimal("0.0005"),
+        price=Decimal("97000.00"),
+    )
+
+    call_params = adapter.rest.new_order.call_args[0][0]
+    assert call_params["quantity"] == "0.0005"
+
+
+@pytest.mark.asyncio
+async def test_create_order_uses_btc_default_precision_when_cache_missing():
+    config = make_config()
+    adapter = AsterAdapter(config)
+
+    mock_response = {
+        "orderId": 100002,
+        "clientOrderId": "test_default_prec",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "type": "LIMIT",
+        "origQty": "0.0005",
+        "executedQty": "0",
+        "price": "97000.00",
+        "avgPrice": "0",
+        "status": "NEW",
+        "time": 1700000000000,
+        "updateTime": 1700000000000,
+    }
+    adapter.rest.new_order = AsyncMock(return_value=mock_response)
+
+    await adapter.create_order(
+        symbol="BTCUSDT",
+        side=OrderSide.BUY,
+        order_type=OrderType.LIMIT,
+        amount=Decimal("0.0005"),
+        price=Decimal("97000.00"),
+    )
+
+    call_params = adapter.rest.new_order.call_args[0][0]
+    assert call_params["quantity"] == "0.0005"
+
+
+@pytest.mark.asyncio
 async def test_cancel_order():
     config = make_config()
     adapter = AsterAdapter(config)

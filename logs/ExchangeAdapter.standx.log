@@ -1,7 +1,20 @@
-2026-02-06 15:06:29,166 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
-2026-02-06 15:06:29,189 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
-2026-02-06 15:06:30,175 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
-2026-02-06 15:06:30,175 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
-2026-02-06 15:11:25,496 - ExchangeAdapter.standx - INFO - disconnect:155 - 正在断开交易所连接...
-2026-02-06 15:11:25,573 - ExchangeAdapter.standx - INFO - disconnect:175 - 交易所连接已断开
-2026-02-06 15:11:25,573 - ExchangeAdapter.standx - INFO - disconnect:178 - 交易所适配器已停止: standx
+2026-02-10 16:21:46,540 - ExchangeAdapter.standx - INFO - info:102 - 初始化交易所适配器: StandX
+2026-02-10 16:21:46,565 - ExchangeAdapter.standx - INFO - connect:118 - 正在连接到交易所...
+2026-02-10 16:21:46,565 - ExchangeAdapter.standx - INFO - _log:77 - [StandXWS] connecting public stream session_id=cee9ade3-65e2-4521-ad27-923dd077d326 ws_url=wss://perps.standx.com/ws-stream/v1
+2026-02-10 16:21:47,108 - ExchangeAdapter.standx - INFO - _log:77 - [StandXWS] public stream connected session_id=cee9ade3-65e2-4521-ad27-923dd077d326 ws_url=wss://perps.standx.com/ws-stream/v1
+2026-02-10 16:21:47,108 - ExchangeAdapter.standx - INFO - _log:77 - [StandXWS] connecting order stream session_id=cee9ade3-65e2-4521-ad27-923dd077d326 ws_url=wss://perps.standx.com/ws-api/v1
+2026-02-10 16:21:47,458 - ExchangeAdapter.standx - INFO - _log:77 - [StandXWS] order stream auth sent session_id=cee9ade3-65e2-4521-ad27-923dd077d326 request_id=24c97a60-5fa7-4ede-ae08-e4cebff68a98
+2026-02-10 16:21:47,458 - ExchangeAdapter.standx - INFO - _log:77 - [StandXWS] order stream connected session_id=cee9ade3-65e2-4521-ad27-923dd077d326 ws_url=wss://perps.standx.com/ws-api/v1
+2026-02-10 16:21:47,458 - ExchangeAdapter.standx - INFO - _log:77 - [StandXWS] authenticate sent session_id=cee9ade3-65e2-4521-ad27-923dd077d326
+2026-02-10 16:21:47,459 - ExchangeAdapter.standx - INFO - connect:125 - 交易所连接成功
+2026-02-10 16:21:47,459 - ExchangeAdapter.standx - INFO - connect:132 - 交易所适配器已启动: standx
+2026-02-10 16:21:47,459 - ExchangeAdapter.standx - INFO - _log:77 - [StandXWS] listen started session_id=cee9ade3-65e2-4521-ad27-923dd077d326
+2026-02-10 16:21:47,459 - ExchangeAdapter.standx - INFO - _log:77 - [StandXWS] listen_order_stream started session_id=cee9ade3-65e2-4521-ad27-923dd077d326
+2026-02-10 16:21:47,460 - ExchangeAdapter.standx - INFO - _log:77 - [StandXWS] subscribe sent session_id=cee9ade3-65e2-4521-ad27-923dd077d326 channel=depth_book symbol=ETH-USD
+2026-02-10 16:21:47,460 - ExchangeAdapter.standx - INFO - _log:77 - [StandXWS] subscribe sent session_id=cee9ade3-65e2-4521-ad27-923dd077d326 channel=depth_book symbol=BTC-USD
+2026-02-10 16:21:47,460 - ExchangeAdapter.standx - INFO - _log:77 - [StandXWS] subscribe sent session_id=cee9ade3-65e2-4521-ad27-923dd077d326 channel=price symbol=ETH-USD
+2026-02-10 16:21:47,460 - ExchangeAdapter.standx - INFO - _log:77 - [StandXWS] subscribe sent session_id=cee9ade3-65e2-4521-ad27-923dd077d326 channel=price symbol=BTC-USD
+2026-02-10 16:21:47,535 - ExchangeAdapter.standx - INFO - _log_health_summary:143 - [StandXHealth] status=connected connected=True listen_done=False order_listen_done=False public_msgs=0 order_msgs=1 last_msg_ts=2026-02-10T16:21:47.535436 depth_age=none public_exit=None order_exit=None
+2026-02-10 16:22:17,662 - ExchangeAdapter.standx - INFO - _log_health_summary:143 - [StandXHealth] status=connected connected=True listen_done=False order_listen_done=False public_msgs=244 order_msgs=1 last_msg_ts=2026-02-10T16:22:17.660532 depth_age=BTC-USD=0.0s, ETH-USD=0.5s public_exit=None order_exit=None
+2026-02-10 16:22:47,945 - ExchangeAdapter.standx - INFO - _log_health_summary:143 - [StandXHealth] status=connected connected=True listen_done=False order_listen_done=False public_msgs=498 order_msgs=1 last_msg_ts=2026-02-10T16:22:47.942749 depth_age=BTC-USD=0.0s, ETH-USD=0.5s public_exit=None order_exit=None
+2026-02-10 16:23:18,163 - ExchangeAdapter.standx - INFO - _log_health_summary:143 - [StandXHealth] status=connected connected=True listen_done=False order_listen_done=False public_msgs=749 order_msgs=1 last_msg_ts=2026-02-10T16:23:18.161722 depth_age=BTC-USD=0.0s, ETH-USD=0.3s public_exit=None order_exit=None

@@ -920,7 +920,7 @@ class UnifiedDecisionEngine:
         规则摘要：
         - `grid_config.initial_spread_threshold` = T1（首个开仓阈值）
         - `grid_config.grid_step` = 后续格子增量（Tn = T1 + (n-1)*step）
-        - `T0 = T1 / 10` 作为首段平仓阈值
+        - `T0 = T1 * t0_close_ratio` 作为首段平仓阈值（默认 ratio=0.4）
         - 当价差 ≥ 某个 Tn 时，允许开到第 n 格
         - 价差回落到 T(n-1) 以下时，目标持仓下调一格，实现 “开一格→回落一格才平” 的滞后逻辑
         """
@@ -1075,8 +1075,14 @@ class UnifiedDecisionEngine:
             current += step
 
         # 平仓阈值：T1 → T0，Tn → T(n-1)
-        # 🔥 T0 = T1 * 0.4（40%）
-        t0 = initial * 0.4 if initial > 0 else 0.0
+        # T0 支持配置比例：T0 = T1 * t0_close_ratio（默认 0.4）
+        t0_ratio = getattr(config.grid_config, "t0_close_ratio", 0.4)
+        try:
+            t0_ratio = float(t0_ratio)
+        except (TypeError, ValueError):
+            t0_ratio = 0.4
+        t0_ratio = min(1.0, max(0.0, t0_ratio))
+        t0 = initial * t0_ratio if initial > 0 else 0.0
         close_thresholds = [t0]
         close_thresholds.extend(open_thresholds[:-1])
 
@@ -1125,10 +1131,10 @@ class UnifiedDecisionEngine:
         🔥 用户最终确认的规则：
 
         网格定义:
-        - T0 = 0.02% (initial * 0.4, 不开仓区间)
-        - T1 = 0.05% (initial)
-        - T2 = 0.08% (initial + step)
-        - T3 = 0.11% (initial + 2*step)
+        - T0 = T1 * t0_close_ratio（默认 0.4，不开仓区间）
+        - T1 = initial
+        - T2 = initial + step
+        - T3 = initial + 2*step
 
         开仓规则:
         - 必须 >= T1 才开仓
@@ -1164,8 +1170,13 @@ class UnifiedDecisionEngine:
             # 🔥 平仓阈值 = T(n-1)的开仓阈值
             if grid <= 1:
                 # T1开仓 → T0平仓
-                # T0 = T1 * 0.4（40%）
-                close_threshold = initial * 0.4
+                t0_ratio = getattr(config.grid_config, "t0_close_ratio", 0.4)
+                try:
+                    t0_ratio = float(t0_ratio)
+                except (TypeError, ValueError):
+                    t0_ratio = 0.4
+                t0_ratio = min(1.0, max(0.0, t0_ratio))
+                close_threshold = initial * t0_ratio
             else:
                 # T2+开仓 → T(n-1)平仓
                 # T2 (grid=2) → T1平仓 = initial = 0.05%

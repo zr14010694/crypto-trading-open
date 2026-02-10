@@ -43,6 +43,7 @@ class GridConfig:
     
     # 可选参数（有默认值）
     split_order_size: Optional[float] = None  # 🔥 新参数：单笔订单数量（优先使用）
+    t0_close_ratio: float = 0.4  # 🔥 T0 平仓比例（T0 = T1 * ratio）
     require_orderbook_liquidity: bool = False  # 🔥 对手盘深度校验开关
     min_orderbook_quantity: Optional[float] = None  # 🔥 对手盘最小深度要求（绝对数量）
     slippage_tolerance: Optional[float] = None  # 🔥 市价单最大滑点（小数，例如0.0005=0.05%）
@@ -214,6 +215,7 @@ class SegmentedConfigManager:
                 segment_partial_order_ratio=float(grid_data.get('segment_partial_order_ratio', 1.0)),
                 min_partial_order_quantity=float(grid_data.get('min_partial_order_quantity', 0.0)),
                 split_order_size=split_order_size,
+                t0_close_ratio=float(grid_data.get('t0_close_ratio', 0.4)),
                 profit_per_segment=float(grid_data.get('profit_per_segment', 0.02)),  # 🔥 添加
                 use_symmetric_close=bool(grid_data.get('use_symmetric_close', False)),
                 scalp_profit_threshold=float(grid_data.get('scalp_profit_threshold', 0.0)),
@@ -390,4 +392,3 @@ class SegmentedConfigManager:
     def is_monitor_only(self) -> bool:
         """是否为监控模式（只监控不下单）"""
         return self.system_mode.get('monitor_only', True)
-
